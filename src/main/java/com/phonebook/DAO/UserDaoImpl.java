@@ -28,7 +28,7 @@ public class UserDaoImpl implements UserDao {
         if(connection!=null){
             try {
                 PreparedStatement ps = connection.prepareStatement(sqlQuery);
-                ResultSet resultSet = ps.getResultSet();
+                ResultSet resultSet = ps.executeQuery();
 
                 while(resultSet.next()){
                     UserProfile contact = new UserProfile();
@@ -64,8 +64,7 @@ public class UserDaoImpl implements UserDao {
             try {
                 PreparedStatement ps = connection.prepareStatement(sqlQuery);
                 ps.setInt(1,id);
-                ResultSet resultSet = ps.getResultSet();
-
+                ResultSet resultSet = ps.executeQuery();
 
                 while(resultSet.next()){
                     contact = new UserProfile();

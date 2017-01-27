@@ -22,11 +22,11 @@ public class ContactServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserDao dao = new UserDaoImpl();
-//        List<UserProfile> contacts = dao.getAllUsers();
-//
-//        for (UserProfile u : contacts){
-//            System.out.println(u);
-//        }
-        System.out.println(dao.getUserById(1));
+        List<UserProfile> contacts = dao.getAllUsers();
+
+        for (UserProfile u : contacts){
+            System.out.println(u);
+        }
+//        System.out.println(dao.getUserById(1));
     }
 }
