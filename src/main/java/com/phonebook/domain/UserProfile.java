@@ -2,29 +2,39 @@ package com.phonebook.domain;
 
 
 public class UserProfile {
+    private Integer id;
     private String firstName;
     private String lastName;
     private String address;
-    private String phoneNumeber;
+    private String phoneNumber;
     private String email;
 
     public UserProfile() {}
 
-    public UserProfile(String firstName, String lastName, String address, String phoneNumeber, String email) {
+    public UserProfile(String firstName, String lastName, String address, String phoneNumber, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
-        this.phoneNumeber = phoneNumeber;
+        this.phoneNumber = phoneNumber;
         this.email = email;
     }
 
     @Override
     public String toString() {
-        return "firstName=" + firstName +
-                ", lastName=" + lastName +
-                ", address=" + address +
-                ", phoneNumeber=" + phoneNumeber +
-                ", email=" + email ;
+        return  "Id: " + id +
+                " firstName: " + firstName +
+                " lastName: " + lastName +
+                " address: " + address +
+                " phoneNumber: " + phoneNumber +
+                " email: " + email ;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -51,12 +61,12 @@ public class UserProfile {
         this.address = address;
     }
 
-    public String getPhoneNumeber() {
-        return phoneNumeber;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhoneNumeber(String phoneNumeber) {
-        this.phoneNumeber = phoneNumeber;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getEmail() {
