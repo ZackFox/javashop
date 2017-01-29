@@ -18,7 +18,7 @@ public class UserDaoImpl implements UserDao {
         dbUtil = new DateBaseUtil();
     }
 
-    public List<UserProfile> getAllUsers() {
+    public List<UserProfile> getAllContacts() {
         String sqlQuery = "select id,firstname,lastname,phone,email from contacts";
 
         List<UserProfile> contacts = new LinkedList<>();
@@ -55,9 +55,9 @@ public class UserDaoImpl implements UserDao {
         return contacts;
     }
 
-    public UserProfile getUserById(int id) {
+    public UserProfile getContactById(int id) {
         UserProfile contact = null;
-        String sqlQuery = "select id,firstname,lastname,phone,email from contacts WHERE id=? ";
+        String sqlQuery = "select id,firstname,lastname,phone,email from contacts WHERE id=?";
         Connection connection = dbUtil.GetConnection();
 
         if(connection!=null){
@@ -89,15 +89,98 @@ public class UserDaoImpl implements UserDao {
         return contact;
     }
 
-    public void addUser(UserProfile user) {
+    public void addContact(UserProfile contact) {
+        String sqlQuery = "insert into contacts(firstname,lastname,address,phone,email) VALUES (?,?,?,?,?)";
+        Connection connection = dbUtil.GetConnection();
 
+        if(connection !=null){
+            try {
+                PreparedStatement ps = connection.prepareStatement(sqlQuery);
+
+                ps.setString(1,contact.getFirstName());
+                ps.setString(2,contact.getLastName());
+                ps.setString(3,contact.getAddress());
+                ps.setString(4,contact.getPhoneNumber());
+                ps.setString(5,contact.getEmail());
+
+                int ex = ps.executeUpdate();
+
+                if (ex == 0){
+                    throw new SQLException();
+                }
+
+                ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }finally {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
-    public void updateUser(int id) {
+    public void updateContact(UserProfile contact) {
+        String sqlQuery = "UPDATE contacts set firstname=?,lastname=?,address=?,phone=?,email=? where id=?";
+        Connection connection = dbUtil.GetConnection();
 
+        if(connection !=null){
+            try {
+                PreparedStatement ps = connection.prepareStatement(sqlQuery);
+
+                ps.setString(1,contact.getFirstName());
+                ps.setString(2,contact.getLastName());
+                ps.setString(3,contact.getAddress());
+                ps.setString(4,contact.getPhoneNumber());
+                ps.setString(5,contact.getEmail());
+                ps.setInt(6,contact.getId());
+
+                int ex = ps.executeUpdate();
+
+                if (ex == 0){
+                    throw new SQLException();
+                }
+
+                ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }finally {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
-    public void deleteUser(int id) {
+    public void deleteContact(int id) {
+        String sqlQuery = "DELETE FROM contacts WHERE id=?";
+        Connection connection = dbUtil.GetConnection();
 
+        if(connection !=null){
+            try {
+                PreparedStatement ps = connection.prepareStatement(sqlQuery);
+                ps.setInt(1,id);
+
+                int ex = ps.executeUpdate();
+
+                if (ex == 0){
+                    throw new SQLException();
+                }
+
+                ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }finally {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }
