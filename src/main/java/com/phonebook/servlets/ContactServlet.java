@@ -25,11 +25,7 @@ public class ContactServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserDao dao = new UserDaoImpl();
         List<UserProfile> contacts = dao.getAllContacts();
-
-        PrintWriter out = response.getWriter();
-
-        for (UserProfile u : contacts){
-            out.println("<p>"+u+"</p>");
-        }
+        request.setAttribute("list", contacts);
+        request.getRequestDispatcher("/WEB-INF/views/contacts.jsp").forward(request,response);
     }
 }
