@@ -13,7 +13,7 @@
         <div class="container">
             <div class="col-md-12">
                 <h2>Hello World!</h2>
-                <a href="get/contacts">Все контакты</a>
+                <a href="products">Все контакты</a>
                 <p> приложение написано с применением servlet и jdbc </p>
             </div>
         </div>

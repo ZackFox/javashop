@@ -1,7 +1,7 @@
 package com.phonebook.domain;
 
 
-public class UserProfile {
+public class CustomerProfile {
     private Integer id;
     private String firstName;
     private String lastName;
@@ -9,9 +9,9 @@ public class UserProfile {
     private String phoneNumber;
     private String email;
 
-    public UserProfile() {}
+    public CustomerProfile() {}
 
-    public UserProfile(String firstName, String lastName, String address, String phoneNumber, String email) {
+    public CustomerProfile(String firstName, String lastName, String address, String phoneNumber, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;

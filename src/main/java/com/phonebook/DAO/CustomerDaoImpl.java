@@ -1,7 +1,7 @@
 package com.phonebook.DAO;
 
 import com.phonebook.db.DateBaseUtil;
-import com.phonebook.domain.UserProfile;
+import com.phonebook.domain.CustomerProfile;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,18 +10,18 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class UserDaoImpl implements UserDao {
+public class CustomerDaoImpl implements CustomerDao {
 
     private DateBaseUtil dbUtil;
 
-    public UserDaoImpl(){
+    public CustomerDaoImpl(){
         dbUtil = new DateBaseUtil();
     }
 
-    public List<UserProfile> getAllContacts() {
-        String sqlQuery = "select id,firstname,lastname,phone,email from contacts";
+    public List<CustomerProfile> getAllCustomers() {
+        String sqlQuery = "select id,firstname,lastname,phone,email from customers";
 
-        List<UserProfile> contacts = new LinkedList<>();
+        List<CustomerProfile> customers = new LinkedList<>();
 
         Connection connection = dbUtil.GetConnection();
 
@@ -31,14 +31,14 @@ public class UserDaoImpl implements UserDao {
                 ResultSet resultSet = ps.executeQuery();
 
                 while(resultSet.next()){
-                    UserProfile contact = new UserProfile();
-                    contact.setId(resultSet.getInt("id"));
-                    contact.setFirstName(resultSet.getString("firstname"));
-                    contact.setLastName(resultSet.getString("lastname"));
-                    contact.setPhoneNumber(resultSet.getString("phone"));
-                    contact.setEmail(resultSet.getString("email"));
+                    CustomerProfile customer = new CustomerProfile();
+                    customer.setId(resultSet.getInt("id"));
+                    customer.setFirstName(resultSet.getString("firstname"));
+                    customer.setLastName(resultSet.getString("lastname"));
+                    customer.setPhoneNumber(resultSet.getString("phone"));
+                    customer.setEmail(resultSet.getString("email"));
 
-                    contacts.add(contact);
+                    customers.add(customer);
                 }
                 ps.close();
             } catch (SQLException e) {
@@ -52,12 +52,12 @@ public class UserDaoImpl implements UserDao {
             }
         }
 
-        return contacts;
+        return customers;
     }
 
-    public UserProfile getContactById(int id) {
-        UserProfile contact = null;
-        String sqlQuery = "select id,firstname,lastname,phone,email from contacts WHERE id=?";
+    public CustomerProfile getCustomerById(int id) {
+        CustomerProfile customer = null;
+        String sqlQuery = "select id,firstname,lastname,phone,email from customers WHERE id=?";
         Connection connection = dbUtil.GetConnection();
 
         if(connection!=null){
@@ -67,12 +67,12 @@ public class UserDaoImpl implements UserDao {
                 ResultSet resultSet = ps.executeQuery();
 
                 while(resultSet.next()){
-                    contact = new UserProfile();
-                    contact.setId(resultSet.getInt("id"));
-                    contact.setFirstName(resultSet.getString("firstname"));
-                    contact.setLastName(resultSet.getString("lastname"));
-                    contact.setPhoneNumber(resultSet.getString("phone"));
-                    contact.setEmail(resultSet.getString("email"));
+                    customer = new CustomerProfile();
+                    customer.setId(resultSet.getInt("id"));
+                    customer.setFirstName(resultSet.getString("firstname"));
+                    customer.setLastName(resultSet.getString("lastname"));
+                    customer.setPhoneNumber(resultSet.getString("phone"));
+                    customer.setEmail(resultSet.getString("email"));
                 }
                 ps.close();
             } catch (SQLException e) {
@@ -86,22 +86,22 @@ public class UserDaoImpl implements UserDao {
             }
         }
 
-        return contact;
+        return customer;
     }
 
-    public void addContact(UserProfile contact) {
-        String sqlQuery = "insert into contacts(firstname,lastname,address,phone,email) VALUES (?,?,?,?,?)";
+    public void addCustomer(CustomerProfile customer) {
+        String sqlQuery = "insert into customers(firstname,lastname,address,phone,email) VALUES (?,?,?,?,?)";
         Connection connection = dbUtil.GetConnection();
 
         if(connection !=null){
             try {
                 PreparedStatement ps = connection.prepareStatement(sqlQuery);
 
-                ps.setString(1,contact.getFirstName());
-                ps.setString(2,contact.getLastName());
-                ps.setString(3,contact.getAddress());
-                ps.setString(4,contact.getPhoneNumber());
-                ps.setString(5,contact.getEmail());
+                ps.setString(1,customer.getFirstName());
+                ps.setString(2,customer.getLastName());
+                ps.setString(3,customer.getAddress());
+                ps.setString(4,customer.getPhoneNumber());
+                ps.setString(5,customer.getEmail());
 
                 int ex = ps.executeUpdate();
 
@@ -122,20 +122,20 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    public void updateContact(UserProfile contact) {
-        String sqlQuery = "UPDATE contacts set firstname=?,lastname=?,address=?,phone=?,email=? where id=?";
+    public void updateCustomer(CustomerProfile customer) {
+        String sqlQuery = "UPDATE customers set firstname=?,lastname=?,address=?,phone=?,email=? where id=?";
         Connection connection = dbUtil.GetConnection();
 
         if(connection !=null){
             try {
                 PreparedStatement ps = connection.prepareStatement(sqlQuery);
 
-                ps.setString(1,contact.getFirstName());
-                ps.setString(2,contact.getLastName());
-                ps.setString(3,contact.getAddress());
-                ps.setString(4,contact.getPhoneNumber());
-                ps.setString(5,contact.getEmail());
-                ps.setInt(6,contact.getId());
+                ps.setString(1,customer.getFirstName());
+                ps.setString(2,customer.getLastName());
+                ps.setString(3,customer.getAddress());
+                ps.setString(4,customer.getPhoneNumber());
+                ps.setString(5,customer.getEmail());
+                ps.setInt(6,customer.getId());
 
                 int ex = ps.executeUpdate();
 
@@ -156,8 +156,8 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    public void deleteContact(int id) {
-        String sqlQuery = "DELETE FROM contacts WHERE id=?";
+    public void deleteCustomer(int id) {
+        String sqlQuery = "DELETE FROM customers WHERE id=?";
         Connection connection = dbUtil.GetConnection();
 
         if(connection !=null){
