@@ -23,16 +23,29 @@
                         </form>
                     </div>
                     <div class="col-md-4">
-                        <c:if test="${customer.id == 0}">
-                            <p>Вы вошли как ${customer.firstName} ${customer.lastName}</p>
+                        <c:if test="${sessionScope.customer.id == 0}">
+                            <p>Вы вошли как ${sessionScope.customer.firstName} ${sessionScope.customer.lastName}</p>
                             <p>Для оформления заказа необходимо авторизоваться.</p>
-                        </c:if>
-                        <a href="#" class="login-btn">Войти</a>
-                        <a href="#" class="login-btn">Зарегистрироваться</a>
+                            <a href="#" class="login-btn">Войти</a>
+                            <a href="registration/new/profile" class="login-btn">Зарегистрироваться</a>
 
-                        <%--<a href="/get/card/profile/1" class="login">Карзина</a>--%>
-                    <%--<a href="/get/profile/1" class="login">name</a>--%>
-                        <%--<a href="/logout" class="logout-btn">logout</a>--%>
+                            <div class="login-form">
+                                <form action="/login" method="post">
+                                    <label for="login">логин:</label>
+                                    <input type="text" name="login" id="login">
+                                    <label for="pass">пороль:</label>
+                                    <input type="password" name="password" id="pass">
+                                    <input type="submit" class="btn btn-primary">
+                                </form>
+                            </div>
+                        </c:if>
+
+                        <c:if test="${sessionScope.customer.id > 0}">
+                            <a href="/get/card/profile/1" class="card">Карзина</a>
+                            <a href="/get/profile/1" class="personal">${customer.firstName}</a>
+                            <a href="/logout" class="logout-btn">logout</a>
+                        </c:if>
+
                     </div>
                 </div>
 

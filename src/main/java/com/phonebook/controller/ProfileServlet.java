@@ -1,4 +1,4 @@
-package com.phonebook.servlets;
+package com.phonebook.controller;
 
 import com.phonebook.DAO.CustomerDao;
 import com.phonebook.DAO.CustomerDaoImpl;
@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 
 @WebServlet("/profile/${id}")

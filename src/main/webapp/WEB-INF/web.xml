@@ -6,7 +6,7 @@
 
     <!--<servlet>-->
         <!--<servlet-name>contactServlet</servlet-name>-->
-        <!--<servlet-class>com.phonebook.servlets.ListProducstServletrvlet</servlet-class>-->
+        <!--<servlet-class>com.phonebook.controllerer.ListProducstServletrvlet</servlet-class>-->
         <!--<load-on-startup>1</load-on-startup>-->
     <!--</servlet>-->
     <!---->

@@ -3,30 +3,48 @@ package com.phonebook.domain;
 
 public class CustomerProfile {
     private Integer id;
+    private String login;
+    private String password;
     private String firstName;
     private String lastName;
     private String address;
     private String phoneNumber;
     private String email;
 
-    public CustomerProfile() {}
-
-    public CustomerProfile(String firstName, String lastName, String address, String phoneNumber, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
+    public CustomerProfile() {
+        id = 0;
+        firstName = "Гость";
+        login = "гость";
+        password = "гость";
     }
 
     @Override
     public String toString() {
-        return  "Id: " + id +
-                " firstName: " + firstName +
-                " lastName: " + lastName +
-                " address: " + address +
-                " phoneNumber: " + phoneNumber +
-                " email: " + email ;
+        return  "Id: " + id + "/ "+
+                " firstName: " + firstName + " / "+
+                " lastName: " + lastName + " / "+
+                " address: " + address + " / " +
+                " phoneNumber: " + phoneNumber + " / "+
+                " login: " + login +" / "+
+                " password: " + password + " / "+
+                " email: " + email;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Integer getId() {
@@ -76,4 +94,5 @@ public class CustomerProfile {
     public void setEmail(String email) {
         this.email = email;
     }
+
 }

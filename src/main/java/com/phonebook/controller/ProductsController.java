@@ -1,4 +1,4 @@
-package com.phonebook.servlets;
+package com.phonebook.controller;
 
 import com.phonebook.DAO.CustomerDao;
 import com.phonebook.DAO.CustomerDaoImpl;
@@ -14,16 +14,10 @@ import java.util.List;
 
 
 @WebServlet("/products")
-public class ListProductServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
+public class ProductsController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        CustomerProfile guest = new CustomerProfile();
-        guest.setId(0);
-        guest.setFirstName("гость");
-        request.setAttribute("customer", guest);
+        // вывод списка товаров
 
         CustomerDao dao = new CustomerDaoImpl();
         List<CustomerProfile> customers = dao.getAllCustomers();
