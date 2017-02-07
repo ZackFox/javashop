@@ -5,11 +5,12 @@ import com.phonebook.model.CustomerProfile;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = "/products")
-public class AuthFilter implements Filter {
+@WebFilter(urlPatterns = "/cabinet")
+public class SuccessFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -17,13 +18,14 @@ public class AuthFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
-        System.out.println("filter success");
+        System.out.println("cabinet filter");
 
         HttpSession session = ((HttpServletRequest) request).getSession();
+        HttpServletResponse httpResponse = (HttpServletResponse) response;
         if(session.getAttribute("login") == null ){
-            session.setAttribute("customer",new CustomerProfile());
+            httpResponse.sendRedirect("/products");
+            return;
         }
-        System.out.println(session.getAttribute("login"));
         filterChain.doFilter(request,response);
     }
 

@@ -1,4 +1,4 @@
-package com.phonebook.domain;
+package com.phonebook.model;
 
 
 public class CustomerProfile {

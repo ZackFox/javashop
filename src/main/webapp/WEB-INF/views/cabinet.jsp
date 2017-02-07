@@ -14,14 +14,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <a href="/products" class="logo">Digital Shop</a>
+                <h3 class="logo"> ${sessionScope.customer.firstName} ${sessionScope.customer.lastName}</h3>
             </div>
-            <div class="col-md-6">
-                <form action="">
-                    <input type="text" class="text-input">
-                    <input type="submit" value="поиск" class="btn btn-primary">
-                </form>
-            </div>
+
             <div class="col-md-3">
 
             </div>
@@ -42,17 +37,7 @@
     <div class="row">
         <div class="col-md-10">
             <div class="t">
-                <%--<ul>--%>
-                    <%--<c:forEach var="profile" items="${list}">--%>
-                        <%--<li>--%>
-                            <%--<a href="">${profile.firstName}</a>--%>
-                            <%--<a href="">${profile.lastName}</a>--%>
-                            <%--<a href="">${profile.address}</a>--%>
-                            <%--<a href="">${profile.phoneNumber}</a>--%>
-                            <%--<a href="">${profile.email}</a>--%>
-                        <%--</li>--%>
-                    <%--</c:forEach>--%>
-                <%--</ul>--%>
+                <h1>cabinet</h1>
             </div>
         </div>
     </div>

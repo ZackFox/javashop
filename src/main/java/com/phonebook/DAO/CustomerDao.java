@@ -1,6 +1,6 @@
 package com.phonebook.DAO;
 
-import com.phonebook.domain.CustomerProfile;
+import com.phonebook.model.CustomerProfile;
 import java.util.List;
 
 public interface CustomerDao {

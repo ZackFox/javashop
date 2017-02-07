@@ -2,7 +2,7 @@ package com.phonebook.controller;
 
 import com.phonebook.DAO.CustomerDao;
 import com.phonebook.DAO.CustomerDaoImpl;
-import com.phonebook.domain.CustomerProfile;
+import com.phonebook.model.CustomerProfile;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
 
 
 @WebServlet("/login")

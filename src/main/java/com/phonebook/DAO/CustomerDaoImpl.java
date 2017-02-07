@@ -1,7 +1,7 @@
 package com.phonebook.DAO;
 
-import com.phonebook.db.DateBaseUtil;
-import com.phonebook.domain.CustomerProfile;
+import com.phonebook.db.DBconnectionUtill;
+import com.phonebook.model.CustomerProfile;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,10 +12,10 @@ import java.util.List;
 
 public class CustomerDaoImpl implements CustomerDao {
 
-    private DateBaseUtil dbUtil;
+    private DBconnectionUtill dbUtil;
 
     public CustomerDaoImpl(){
-        dbUtil = new DateBaseUtil();
+        dbUtil = new DBconnectionUtill();
     }
 
     public List<CustomerProfile> getAllCustomers() {
@@ -23,7 +23,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
         List<CustomerProfile> customers = new LinkedList<>();
 
-        Connection connection = dbUtil.GetConnection();
+        Connection connection = dbUtil.getConnection();
 
         if(connection!=null){
             try {
@@ -61,7 +61,7 @@ public class CustomerDaoImpl implements CustomerDao {
     public CustomerProfile getCustomerById(int id) {
         CustomerProfile customer = null;
         String sqlQuery = "select * from customers WHERE customer_id=?";
-        Connection connection = dbUtil.GetConnection();
+        Connection connection = dbUtil.getConnection();
 
         if(connection!=null){
             try {
@@ -99,7 +99,7 @@ public class CustomerDaoImpl implements CustomerDao {
     public CustomerProfile getCustomerByLogin(String login, String pass) {
         CustomerProfile customer = new CustomerProfile();
         String sqlQuery = "select * from customers WHERE customer_login=? and customer_password=?";
-        Connection connection = dbUtil.GetConnection();
+        Connection connection = dbUtil.getConnection();
 
         if(connection!=null){
             try {
@@ -134,7 +134,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
     public void addCustomer(CustomerProfile customer) {
         String sqlQuery = "insert into customers(firstname,lastname,address,phone,customer_login,customer_password,email) VALUES (?,?,?,?,?,?,?)";
-        Connection connection = dbUtil.GetConnection();
+        Connection connection = dbUtil.getConnection();
 
         if(connection !=null){
             try {
@@ -169,7 +169,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
     public void updateCustomer(CustomerProfile customer) {
         String sqlQuery = "UPDATE customers set firstname=?,lastname=?,address=?,phone=?,customer_login=?,customer_password=?,email=? where customer_id=?";
-        Connection connection = dbUtil.GetConnection();
+        Connection connection = dbUtil.getConnection();
 
         if(connection !=null){
             try {
@@ -205,7 +205,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
     public void deleteCustomer(int id) {
         String sqlQuery = "DELETE FROM customers WHERE customer_id=?";
-        Connection connection = dbUtil.GetConnection();
+        Connection connection = dbUtil.getConnection();
 
         if(connection !=null){
             try {

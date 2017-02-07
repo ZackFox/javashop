@@ -2,7 +2,7 @@ package com.phonebook.controller;
 
 import com.phonebook.DAO.CustomerDao;
 import com.phonebook.DAO.CustomerDaoImpl;
-import com.phonebook.domain.CustomerProfile;
+import com.phonebook.model.CustomerProfile;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,17 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet("/profile/${id}")
-public class ProfileServlet extends HttpServlet {
+@WebServlet("/cabinet")
+public class CabinetController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        CustomerDao dao = new CustomerDaoImpl();
-        CustomerProfile customer = dao.getCustomerById(1);
 
-        request.setAttribute("customer", customer);
-        request.getRequestDispatcher("/WEB-INF/views/profile.jsp").forward(request,response);
+        request.getRequestDispatcher("/WEB-INF/views/cabinet.jsp").forward(request,response);
+
     }
 }

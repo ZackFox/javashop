@@ -4,18 +4,18 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DateBaseUtil {
+public class DBconnectionUtill {
     private String dbName;
 
-    public DateBaseUtil() {
+    public DBconnectionUtill() {
         this.dbName = "mydb";
     }
 
-    public DateBaseUtil(String dbName) {
+    public DBconnectionUtill(String dbName) {
         this.dbName = dbName;
     }
 
-    public Connection GetConnection(){
+    public Connection getConnection(){
         Connection connection = null;
 
         try {

@@ -2,7 +2,7 @@ package com.phonebook.controller;
 
 import com.phonebook.DAO.CustomerDao;
 import com.phonebook.DAO.CustomerDaoImpl;
-import com.phonebook.domain.CustomerProfile;
+import com.phonebook.model.CustomerProfile;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
