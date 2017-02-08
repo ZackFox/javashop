@@ -32,7 +32,7 @@
                                 <form action="/login" method="post">
                                     <input type="text" name="login" id="login" placeholder="логин">
                                     <input type="password" name="password" id="pass" placeholder="пароль">
-                                    <input type="submit" class="btn btn-login">
+                                    <input type="submit" class="btn btn-login" value="Войти">
                                 </form>
                             </div>
                         </c:if>
@@ -56,26 +56,26 @@
         </header>
         <div class="container content-wrapper">
             <div class="row">
-                <aside class="col-md-2">
-                    <h5>товары</h5>
+                <%--<aside class="col-md-2">--%>
+                    <%--<h5>товары</h5>--%>
 
-                    <ul class="nav nav-sidebar">
+                    <%--<ul class="nav nav-sidebar">--%>
+                        <%--<c:forEach var="cat" items="${categories}">--%>
+                            <%--<li><a href="products/category?id=1">${cat}</a></li>--%>
+                        <%--</c:forEach>--%>
+                    <%--</ul>--%>
+                <%--</aside>--%>
+                <div class="col-md-12">
+                    <ul class="categories">
                         <c:forEach var="cat" items="${categories}">
-                            <li><a href="products/category?id=1">${cat}</a></li>
+                            <li >
+                                <a href="/products/category?id=${cat.id}" class="p_item">
+                                    <h3>${cat.name}</h3>
+                                    <img src="x" alt="">
+                                </a>
+                            </li>
                         </c:forEach>
                     </ul>
-                </aside>
-                <div class="col-md-10">
-                    <div class="table">
-                        <ul>
-
-                            <li class="p_item">
-                                <h5>product title</h5>
-                                <span class="cost">100.</span>
-                                <img src="x" alt="x">
-                            </li>
-                        </ul>
-                    </div>
                 </div>
             </div>
         </div>

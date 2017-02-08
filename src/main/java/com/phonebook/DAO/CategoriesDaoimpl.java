@@ -1,6 +1,7 @@
 package com.phonebook.DAO;
 
 import com.phonebook.db.DBconnectionUtill;
+import com.phonebook.model.CategoryEntity;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,9 +19,9 @@ public class CategoriesDaoimpl implements CategoriesDao{
     }
 
     @Override
-    public List<String> getAllCategorie() {
+    public List<CategoryEntity> getAllCategorie() {
         String sql= "select * from categories";
-        List<String> list = new ArrayList<>();
+        List<CategoryEntity> list = new ArrayList<>();
 
         Connection connection= dbUtill.getConnection();
         try {
@@ -28,7 +29,10 @@ public class CategoriesDaoimpl implements CategoriesDao{
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
-                list.add(rs.getString("cat_name"));
+                CategoryEntity category = new CategoryEntity();
+                category.setId(rs.getInt("cat_id"));
+                category.setName(rs.getString("cat_name"));
+                list.add(category);
             }
             ps.close();
 
@@ -47,7 +51,7 @@ public class CategoriesDaoimpl implements CategoriesDao{
     }
 
     @Override
-    public void addCategory(String name) {
+    public void addCategory(CategoryEntity category) {
 
     }
 

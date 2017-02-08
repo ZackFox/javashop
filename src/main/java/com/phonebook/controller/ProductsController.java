@@ -4,6 +4,7 @@ import com.phonebook.DAO.CategoriesDao;
 import com.phonebook.DAO.CategoriesDaoimpl;
 import com.phonebook.DAO.CustomerDao;
 import com.phonebook.DAO.CustomerDaoImpl;
+import com.phonebook.model.CategoryEntity;
 import com.phonebook.model.CustomerProfile;
 
 import javax.servlet.ServletException;
@@ -21,7 +22,7 @@ public class ProductsController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // вывод списка категорий и товаровЛ
         CategoriesDao dao = new CategoriesDaoimpl();
-        List<String> categories = dao.getAllCategorie();
+        List<CategoryEntity> categories = dao.getAllCategorie();
 
         request.setAttribute("categories",categories);
         request.getRequestDispatcher("/WEB-INF/views/products.jsp").forward(request,response);
