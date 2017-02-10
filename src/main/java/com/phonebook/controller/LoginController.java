@@ -24,17 +24,17 @@ public class LoginController extends HttpServlet {
             CustomerProfile customer = dao.getCustomerByLogin(login,pass);
 
             if (!customer.getLogin().equals(login) && !customer.getPassword().equals(pass)){
-                response.sendRedirect("/products");
+                response.sendRedirect("/catalog");
                 return;
             }
 
             HttpSession session = request.getSession();
             session.setAttribute("login", customer.getLogin());
             session.setAttribute("customer", customer);
-            response.sendRedirect("/products");
+            response.sendRedirect("/catalog");
         }
         else{
-            response.sendRedirect("/products");
+            response.sendRedirect("/catalog");
         }
     }
 }

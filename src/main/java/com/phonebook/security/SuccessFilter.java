@@ -18,12 +18,10 @@ public class SuccessFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
-        System.out.println("cabinet filter");
-
         HttpSession session = ((HttpServletRequest) request).getSession();
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         if(session.getAttribute("login") == null ){
-            httpResponse.sendRedirect("/products");
+            httpResponse.sendRedirect("/catalog");
             return;
         }
         filterChain.doFilter(request,response);

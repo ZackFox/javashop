@@ -16,12 +16,11 @@
                     <%--</ul>--%>
                 <%--</aside>--%>
                 <div class="col-md-12">
-                    <h3>продукты</h3>
-                    <ul class="products">
-                        <c:forEach var="prod" items="${products}">
+                    <ul class="categories">
+                        <c:forEach var="cat" items="${applicationScope.categories}">
                             <li >
-                                <a href="/catalog/product?id=2" class="p_item">
-                                    <h3>${prod.name}</h3>
+                                <a href="/catalog/category?id=${cat.id}" class="p_item">
+                                    <h3>${cat.name}</h3>
                                     <img src="x" alt="">
                                 </a>
                             </li>

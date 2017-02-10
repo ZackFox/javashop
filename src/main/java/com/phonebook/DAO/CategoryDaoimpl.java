@@ -10,17 +10,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoriesDaoimpl implements CategoriesDao{
+public class CategoryDaoimpl implements CategoryDao {
 
     private DBconnectionUtill dbUtill;
 
-    public CategoriesDaoimpl() {
+    public CategoryDaoimpl() {
         dbUtill = new DBconnectionUtill();
     }
 
     @Override
     public List<CategoryEntity> getAllCategorie() {
-        String sql= "select * from categories";
+        String sql= "select * from categories ORDER BY cat_id";
         List<CategoryEntity> list = new ArrayList<>();
 
         Connection connection= dbUtill.getConnection();

@@ -1,9 +1,8 @@
 package com.phonebook.controller;
 
-import com.phonebook.DAO.ProductDao;
-import com.phonebook.DAO.ProductDaoImpl;
+import com.phonebook.DAO.CategoryDao;
+import com.phonebook.DAO.CategoryDaoimpl;
 import com.phonebook.model.CategoryEntity;
-import com.phonebook.model.ProductEntity;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,17 +13,15 @@ import java.io.IOException;
 import java.util.List;
 
 
-@WebServlet("/catalog/category")
-public class ProductsController extends HttpServlet {
+@WebServlet("/catalog")
+public class CatalogController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // вывод списка категорий и товаровЛ
-        int cat_id = Integer.valueOf(request.getParameter("id"));
+        CategoryDao dao = new CategoryDaoimpl();
+        List<CategoryEntity> categories = dao.getAllCategorie();
 
-        ProductDao dao = new ProductDaoImpl();
-        List<ProductEntity> products = dao.getProductsByCategoryId(cat_id);
-
-        request.setAttribute("products",products);
-        request.getRequestDispatcher("/WEB-INF/views/products.jsp").forward(request,response);
+        request.getServletContext().setAttribute("categories",categories);
+        request.getRequestDispatcher("/WEB-INF/views/catalog.jsp").forward(request,response);
     }
 }

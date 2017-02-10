@@ -4,7 +4,7 @@ import com.phonebook.model.CategoryEntity;
 
 import java.util.List;
 
-public interface CategoriesDao {
+public interface CategoryDao {
     List<CategoryEntity> getAllCategorie();
     void addCategory(CategoryEntity category);
     void deleteCategory(int id);
