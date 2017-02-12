@@ -12,13 +12,13 @@
         <header>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <a href="/catalog" class="logo">Shopper</a>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <form action="">
-                            <input type="text" class="search">
-                            <input type="submit" class="btn btn-primary" value="поиск" placeholder="искать">
+                            <input type="text" class="search" placeholder="искать">
+                            <a href="/" class="fa fa-search"></a>
                         </form>
                     </div>
                     <div class="col-md-4">

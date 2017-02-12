@@ -1,4 +1,4 @@
-package com.phonebook.model;
+package com.javashop.model;
 
 public class CategoryEntity {
     private Integer id;

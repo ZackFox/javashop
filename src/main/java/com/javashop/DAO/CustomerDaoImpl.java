@@ -1,7 +1,7 @@
-package com.phonebook.DAO;
+package com.javashop.DAO;
 
-import com.phonebook.db.DBconnectionUtill;
-import com.phonebook.model.CustomerProfile;
+import com.javashop.db.DBconnectionUtill;
+import com.javashop.model.CustomerProfile;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -6,16 +6,17 @@
 
         <div class="container content-wrapper">
             <div class="row">
-                <%--<aside class="col-md-2">--%>
-                    <%--<h5>товары</h5>--%>
+                <aside class="col-md-2">
+                    <h5>товары</h5>
 
-                    <%--<ul class="nav nav-sidebar">--%>
-                        <%--<c:forEach var="cat" items="${categories}">--%>
-                            <%--<li><a href="products/category?id=1">${cat}</a></li>--%>
-                        <%--</c:forEach>--%>
-                    <%--</ul>--%>
-                <%--</aside>--%>
-                <div class="col-md-12">
+                    <ul class="nav nav-sidebar">
+                        <c:forEach var="cat" items="${applicationScope.categories}">
+                            <li><a href="catalog/category?id=1">${cat.name}</a></li>
+                        </c:forEach>
+                    </ul>
+                </aside>
+
+                <div class="col-md-10">
                     <h3>продукты</h3>
                     <ul class="products">
                         <c:forEach var="prod" items="${products}">
@@ -30,5 +31,5 @@
                 </div>
             </div>
         </div>
-    </body>
-</html>
+
+<jsp:include page="footer.jsp"/>

@@ -1,4 +1,4 @@
-package com.phonebook.model;
+package com.javashop.model;
 
 public class ProductEntity {
     private int id;

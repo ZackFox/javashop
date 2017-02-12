@@ -1,8 +1,4 @@
-package com.phonebook.controller;
-
-import com.phonebook.DAO.CustomerDao;
-import com.phonebook.DAO.CustomerDaoImpl;
-import com.phonebook.model.CustomerProfile;
+package com.javashop.controller;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

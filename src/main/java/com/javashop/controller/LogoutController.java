@@ -1,4 +1,4 @@
-package com.phonebook.controller;
+package com.javashop.controller;
 
 
 import javax.servlet.ServletException;

@@ -1,9 +1,8 @@
-package com.phonebook.controller;
+package com.javashop.controller;
 
-import com.phonebook.DAO.ProductDao;
-import com.phonebook.DAO.ProductDaoImpl;
-import com.phonebook.model.CategoryEntity;
-import com.phonebook.model.ProductEntity;
+import com.javashop.DAO.ProductDao;
+import com.javashop.DAO.ProductDaoImpl;
+import com.javashop.model.ProductEntity;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

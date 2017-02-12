@@ -1,6 +1,6 @@
-package com.phonebook.DAO;
+package com.javashop.DAO;
 
-import com.phonebook.model.CategoryEntity;
+import com.javashop.model.CategoryEntity;
 
 import java.util.List;
 

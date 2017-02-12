@@ -1,8 +1,7 @@
-package com.phonebook.DAO;
+package com.javashop.DAO;
 
-import com.phonebook.db.DBconnectionUtill;
-import com.phonebook.model.CategoryEntity;
-import com.phonebook.model.ProductEntity;
+import com.javashop.db.DBconnectionUtill;
+import com.javashop.model.ProductEntity;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -32,10 +31,10 @@ public class ProductDaoImpl implements ProductDao{
 
             while (rs.next()){
                 ProductEntity product = new ProductEntity();
-                product.setId(rs.getInt("product_id"));
-                product.setName(rs.getString("product_name"));
+                product.setId(rs.getInt("prod_id"));
+                product.setName(rs.getString("prod_name"));
                 product.setDescription(rs.getString("prod_desc"));
-                product.setPrice(rs.getFloat("prod_cost"));
+                product.setPrice(rs.getFloat("prod_price"));
                 list.add(product);
             }
             ps.close();
