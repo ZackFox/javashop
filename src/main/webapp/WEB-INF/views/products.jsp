@@ -11,7 +11,7 @@
 
                     <ul class="nav nav-sidebar">
                         <c:forEach var="cat" items="${applicationScope.categories}">
-                            <li><a href="catalog/category?id=1">${cat.name}</a></li>
+                            <li><a href="catalog/category?id=${cat.id}">${cat.name}</a></li>
                         </c:forEach>
                     </ul>
                 </aside>
@@ -21,7 +21,7 @@
                     <ul class="products">
                         <c:forEach var="prod" items="${products}">
                             <li >
-                                <a href="/catalog/product?id=2" class="p_item">
+                                <a href="/catalog/product?id=${prod.id}" class="p_item">
                                     <h3>${prod.name}</h3>
                                     <img src="x" alt="">
                                 </a>

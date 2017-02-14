@@ -1,7 +1,7 @@
 
 
 body{
-    background-color: #ccc;
+    background-color: #eee;
 }
 
 header{
@@ -75,6 +75,8 @@ nav li a{
 .categories li{
     list-style:none;
 }
+
+.cat_item img{ width: 320px;}
 
 .cat_item{
     width:364px;

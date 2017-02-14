@@ -10,6 +10,16 @@ public class ProductEntity {
 
     }
 
+    @Override
+    public String toString() {
+        return "ProductEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                '}';
+    }
+
     public int getId() {
 
         return id;

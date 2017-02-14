@@ -19,6 +19,9 @@ public class LoginController extends HttpServlet {
         String login = request.getParameter("login");
         String pass = request.getParameter("password");
 
+        System.out.println(request.getRequestURI());
+        System.out.println(request.getRequestURL());
+
         CustomerDao dao = new CustomerDaoImpl();
         if (login!=null && pass!=null){
             CustomerProfile customer = dao.getCustomerByLogin(login,pass);

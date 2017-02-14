@@ -20,7 +20,7 @@ public class ProductDaoImpl implements ProductDao{
 
     @Override
     public List<ProductEntity> getProductsByCategoryId(int id) {
-        String sql= "select * from products WHERE prod_cat=?";
+        String sql= "select * from products WHERE cat_id=?";
         List<ProductEntity> list = new ArrayList<>();
 
         Connection connection= dbUtill.getConnection();
@@ -31,10 +31,10 @@ public class ProductDaoImpl implements ProductDao{
 
             while (rs.next()){
                 ProductEntity product = new ProductEntity();
-                product.setId(rs.getInt("prod_id"));
-                product.setName(rs.getString("prod_name"));
-                product.setDescription(rs.getString("prod_desc"));
-                product.setPrice(rs.getFloat("prod_price"));
+                product.setId(rs.getInt("id"));
+                product.setName(rs.getString("name"));
+                product.setDescription(rs.getString("desc"));
+                product.setPrice(rs.getFloat("price"));
                 list.add(product);
             }
             ps.close();
@@ -54,7 +54,35 @@ public class ProductDaoImpl implements ProductDao{
 
     @Override
     public ProductEntity getProductById(int id) {
-        return null;
+
+        String sql = "select * from products where id=?";
+        ProductEntity product = new ProductEntity();
+
+        Connection connection = dbUtill.getConnection();
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1,id);
+            ResultSet resultSet = ps.executeQuery();
+
+            while (resultSet.next()){
+                product.setId(resultSet.getInt("id"));
+                product.setName(resultSet.getString("name"));
+                product.setDescription(resultSet.getString("desc"));
+                product.setPrice(resultSet.getFloat("price"));
+            }
+
+            ps.close();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return product;
     }
 
 //    @Override
