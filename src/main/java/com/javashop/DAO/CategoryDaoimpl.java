@@ -1,6 +1,6 @@
 package com.javashop.DAO;
 
-import com.javashop.db.DBconnectionUtill;
+import com.javashop.db.DbUtil;
 import com.javashop.model.CategoryEntity;
 
 import java.sql.Connection;
@@ -12,18 +12,12 @@ import java.util.List;
 
 public class CategoryDaoimpl implements CategoryDao {
 
-    private DBconnectionUtill dbUtill;
-
-    public CategoryDaoimpl() {
-        dbUtill = new DBconnectionUtill();
-    }
-
     @Override
     public List<CategoryEntity> getAllCategorie() {
         String sql= "select * from categories ORDER BY id";
         List<CategoryEntity> list = new ArrayList<>();
 
-        Connection connection= dbUtill.getConnection();
+        Connection connection= DbUtil.getConnection();
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();

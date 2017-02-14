@@ -4,12 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DBconnectionUtill {
+public class DbUtil {
 
-    public DBconnectionUtill() {
-    }
-
-    public Connection getConnection(){
+    public static Connection getConnection(){
         Connection connection = null;
 
         try {

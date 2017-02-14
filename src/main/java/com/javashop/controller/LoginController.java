@@ -21,6 +21,7 @@ public class LoginController extends HttpServlet {
 
         System.out.println(request.getRequestURI());
         System.out.println(request.getRequestURL());
+        System.out.println(request.getAttribute("javax.servlet.forward.request_uri"));
 
         CustomerDao dao = new CustomerDaoImpl();
         if (login!=null && pass!=null){

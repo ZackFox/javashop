@@ -1,6 +1,6 @@
 package com.javashop.DAO;
 
-import com.javashop.db.DBconnectionUtill;
+import com.javashop.db.DbUtil;
 import com.javashop.model.CustomerProfile;
 
 import java.sql.Connection;
@@ -12,18 +12,12 @@ import java.util.List;
 
 public class CustomerDaoImpl implements CustomerDao {
 
-    private DBconnectionUtill dbUtil;
-
-    public CustomerDaoImpl(){
-        dbUtil = new DBconnectionUtill();
-    }
-
     public List<CustomerProfile> getAllCustomers() {
         String sqlQuery = "select * from customers";
 
         List<CustomerProfile> customers = new LinkedList<>();
 
-        Connection connection = dbUtil.getConnection();
+        Connection connection = DbUtil.getConnection();
 
         if(connection!=null){
             try {
@@ -61,7 +55,7 @@ public class CustomerDaoImpl implements CustomerDao {
     public CustomerProfile getCustomerById(int id) {
         CustomerProfile customer = null;
         String sqlQuery = "select * from customers WHERE id=?";
-        Connection connection = dbUtil.getConnection();
+        Connection connection = DbUtil.getConnection();
 
         if(connection!=null){
             try {
@@ -99,7 +93,7 @@ public class CustomerDaoImpl implements CustomerDao {
     public CustomerProfile getCustomerByLogin(String login, String pass) {
         CustomerProfile customer = new CustomerProfile();
         String sqlQuery = "select * from customers WHERE login=? and password=?";
-        Connection connection = dbUtil.getConnection();
+        Connection connection = DbUtil.getConnection();
 
         if(connection!=null){
             try {
@@ -134,7 +128,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
     public void addCustomer(CustomerProfile customer) {
         String sqlQuery = "insert into customers(firstname,lastname,address,phone,login,password,email) VALUES (?,?,?,?,?,?,?)";
-        Connection connection = dbUtil.getConnection();
+        Connection connection = DbUtil.getConnection();
 
         if(connection !=null){
             try {
@@ -169,7 +163,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
     public void updateCustomer(CustomerProfile customer) {
         String sqlQuery = "UPDATE customers set firstname=?,lastname=?,address=?,phone=?,login=?,password=?,email=? where id=?";
-        Connection connection = dbUtil.getConnection();
+        Connection connection = DbUtil.getConnection();
 
         if(connection !=null){
             try {
@@ -205,7 +199,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
     public void deleteCustomer(int id) {
         String sqlQuery = "DELETE FROM customers WHERE id=?";
-        Connection connection = dbUtil.getConnection();
+        Connection connection = DbUtil.getConnection();
 
         if(connection !=null){
             try {

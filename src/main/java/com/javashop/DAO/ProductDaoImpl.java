@@ -1,6 +1,6 @@
 package com.javashop.DAO;
 
-import com.javashop.db.DBconnectionUtill;
+import com.javashop.db.DbUtil;
 import com.javashop.model.ProductEntity;
 
 import java.sql.Connection;
@@ -12,18 +12,12 @@ import java.util.List;
 
 public class ProductDaoImpl implements ProductDao{
 
-    private DBconnectionUtill dbUtill;
-
-    public ProductDaoImpl() {
-        dbUtill = new DBconnectionUtill();
-    }
-
     @Override
     public List<ProductEntity> getProductsByCategoryId(int id) {
         String sql= "select * from products WHERE cat_id=?";
         List<ProductEntity> list = new ArrayList<>();
 
-        Connection connection= dbUtill.getConnection();
+        Connection connection = DbUtil.getConnection();
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1,id);
@@ -58,7 +52,7 @@ public class ProductDaoImpl implements ProductDao{
         String sql = "select * from products where id=?";
         ProductEntity product = new ProductEntity();
 
-        Connection connection = dbUtill.getConnection();
+        Connection connection = DbUtil.getConnection();
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1,id);
