@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<Context>
+    <Resource name="jdbc/heroku"
+              auth="Container"
+              type="javax.sql.DataSource"
+              factory="org.apache.commons.dbcp2.BasicDataSourceFactory"
+              username= "dqgbtpzuiwhuwt"
+              password="3a9d7a669cbcbfbad2ec543e5d05190d7d36499a94bb9d05450f537b5cad322f"
+              driverClassName="org.postgresql.Driver"
+              url="jdbc:postgresql://ec2-107-20-149-243.compute-1.amazonaws.com:5432/d7gloj3v6puv1q"
+              sslmode="require"
+              ssl="true"
+              sslfactory="org.postgresql.ssl.NonValidatingFactory"
+              maxActive="5"
+              removeAbandoned="true"
+              removeAbandonedTimeout="60"
+              logAbandoned="true"/>
+</Context>
+

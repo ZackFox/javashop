@@ -1,8 +1,11 @@
 package com.javashop.DAO;
 
 import com.javashop.db.DbUtil;
+import com.javashop.db.Dbconnection;
 import com.javashop.model.CategoryEntity;
 
+import javax.naming.NamingException;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,7 +20,15 @@ public class CategoryDaoimpl implements CategoryDao {
         String sql= "select * from categories ORDER BY id";
         List<CategoryEntity> list = new ArrayList<>();
 
-        Connection connection= DbUtil.getConnection();
+        Connection connection= null;
+
+        try {
+            connection = Dbconnection.getConnection();
+        }
+        catch (SQLException | NamingException e) {
+            e.printStackTrace();
+        }
+
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();

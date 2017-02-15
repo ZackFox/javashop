@@ -4,7 +4,6 @@ import com.javashop.DAO.CategoryDao;
 import com.javashop.DAO.CategoryDaoimpl;
 import com.javashop.DAO.ProductDao;
 import com.javashop.DAO.ProductDaoImpl;
-import com.javashop.model.CategoryEntity;
 import com.javashop.model.ProductEntity;
 
 import javax.servlet.ServletException;
@@ -13,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
+
 
 
 @WebServlet("/catalog/product")
