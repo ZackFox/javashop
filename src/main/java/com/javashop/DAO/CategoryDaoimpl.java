@@ -15,19 +15,16 @@ import java.util.List;
 
 public class CategoryDaoimpl implements CategoryDao {
 
+    Dbconnection pool;
+
     @Override
     public List<CategoryEntity> getAllCategorie() {
+
         String sql= "select * from categories ORDER BY id";
         List<CategoryEntity> list = new ArrayList<>();
 
-        Connection connection= null;
-
-        try {
-            connection = Dbconnection.getConnection();
-        }
-        catch (SQLException | NamingException e) {
-            e.printStackTrace();
-        }
+        pool = Dbconnection.getInstance();
+        Connection connection = Dbconnection.getConnection();
 
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
