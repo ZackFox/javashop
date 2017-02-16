@@ -15,15 +15,13 @@ import java.util.List;
 
 public class CategoryDaoimpl implements CategoryDao {
 
-    Dbconnection pool = Dbconnection.getInstance();;
-
     @Override
     public List<CategoryEntity> getAllCategorie() {
 
         String sql= "select * from categories ORDER BY id";
         List<CategoryEntity> list = new ArrayList<>();
 
-        Connection connection = pool.getConnection();
+        Connection connection = DbUtil.getConnection();
 
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
