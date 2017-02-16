@@ -1,6 +1,5 @@
 package com.javashop.db;
 
-import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -13,9 +12,8 @@ public class Dbconnection {
 
     private Dbconnection() {
         try {
-            InitialContext ic = new InitialContext();
-            Context envContext  = (Context)ic.lookup("java:/comp/env");
-            dataSource = (DataSource)envContext.lookup("jdbc/heroku");
+            InitialContext ctx = new InitialContext();
+            dataSource = (DataSource)ctx.lookup("java:/comp/env/jdbc/heroku");
         }catch(Exception e){
             e.printStackTrace();
         }
