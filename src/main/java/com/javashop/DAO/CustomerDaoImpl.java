@@ -1,8 +1,10 @@
 package com.javashop.DAO;
 
+import com.javashop.db.DataBaseCPUtil;
 import com.javashop.db.DbUtil;
 import com.javashop.model.CustomerProfile;
 
+import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -128,7 +130,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
     public void addCustomer(CustomerProfile customer) {
         String sqlQuery = "insert into customers(firstname,lastname,address,phone,login,password,email) VALUES (?,?,?,?,?,?,?)";
-        Connection connection = DbUtil.getConnection();
+        Connection connection = DataBaseCPUtil.getConnection();
 
         if(connection !=null){
             try {
@@ -163,7 +165,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
     public void updateCustomer(CustomerProfile customer) {
         String sqlQuery = "UPDATE customers set firstname=?,lastname=?,address=?,phone=?,login=?,password=?,email=? where id=?";
-        Connection connection = DbUtil.getConnection();
+        Connection connection = DataBaseCPUtil.getConnection();
 
         if(connection !=null){
             try {
@@ -199,7 +201,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
     public void deleteCustomer(int id) {
         String sqlQuery = "DELETE FROM customers WHERE id=?";
-        Connection connection = DbUtil.getConnection();
+        Connection connection = DataBaseCPUtil.getConnection();
 
         if(connection !=null){
             try {

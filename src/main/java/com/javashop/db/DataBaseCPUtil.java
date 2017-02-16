@@ -4,9 +4,8 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class Dbconnection {
+public class DataBaseCPUtil {
 
-    private static Dbconnection instance = null;
     private static BasicDataSource connectionPool = null;
 
     static {
@@ -20,8 +19,8 @@ public class Dbconnection {
     public static Connection getConnection() {
         try {
             return connectionPool.getConnection();
-        }catch (SQLException sqle) {
-            sqle.printStackTrace();
+        }catch (SQLException e) {
+            e.printStackTrace();
             return null;
         }
     }
