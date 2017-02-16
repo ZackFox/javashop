@@ -1,32 +1,47 @@
 package com.javashop.db;
 
+import org.apache.commons.dbcp2.BasicDataSource;
+
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
 public class Dbconnection {
 
-    private static Dbconnection pool = null;
-    private static DataSource dataSource = null;
+    private static Dbconnection instance = null;
+    private static BasicDataSource connectionPool = null;
 
     private Dbconnection() {
+        URI dbUri = null;
         try {
-            InitialContext ctx = new InitialContext();
-            dataSource = (DataSource)ctx.lookup("java:/comp/env/jdbc/heroku");
-        }catch(Exception e){
+            dbUri = new URI(System.getenv("DATABASE_URL"));
+        } catch (URISyntaxException e) {
             e.printStackTrace();
         }
+        String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + dbUri.getPath();
+        connectionPool = new BasicDataSource();
+
+        if (dbUri.getUserInfo() != null) {
+            connectionPool.setUsername(dbUri.getUserInfo().split(":")[0]);
+            connectionPool.setPassword(dbUri.getUserInfo().split(":")[1]);
+        }
+        connectionPool.setDriverClassName("org.postgresql.Driver");
+        connectionPool.setUrl(dbUrl);
+        connectionPool.setInitialSize(1);
+
     }
 
     public static Dbconnection getInstance() {
-        if (pool == null) pool = new Dbconnection();
-        return pool;
+        if (instance == null) instance = new Dbconnection();
+        return instance;
     }
 
-    public static Connection getConnection() {
+    public Connection getConnection() {
         try {
-            return dataSource.getConnection();
+            return connectionPool.getConnection();
         }catch (SQLException sqle) {
             sqle.printStackTrace();
             return null;

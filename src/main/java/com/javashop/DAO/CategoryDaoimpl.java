@@ -15,7 +15,7 @@ import java.util.List;
 
 public class CategoryDaoimpl implements CategoryDao {
 
-    Dbconnection pool;
+    Dbconnection pool = Dbconnection.getInstance();;
 
     @Override
     public List<CategoryEntity> getAllCategorie() {
@@ -23,8 +23,7 @@ public class CategoryDaoimpl implements CategoryDao {
         String sql= "select * from categories ORDER BY id";
         List<CategoryEntity> list = new ArrayList<>();
 
-        pool = Dbconnection.getInstance();
-        Connection connection = Dbconnection.getConnection();
+        Connection connection = pool.getConnection();
 
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
