@@ -3,7 +3,6 @@
     <Resource name="jdbc/heroku"
               auth="Container"
               type="javax.sql.DataSource"
-              factory="org.apache.commons.dbcp2.BasicDataSourceFactory"
               username= "dqgbtpzuiwhuwt"
               password="3a9d7a669cbcbfbad2ec543e5d05190d7d36499a94bb9d05450f537b5cad322f"
               driverClassName="org.postgresql.Driver"
