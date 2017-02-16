@@ -1,11 +1,6 @@
 package com.javashop.db;
 
 import org.apache.commons.dbcp2.BasicDataSource;
-
-import javax.naming.InitialContext;
-import javax.sql.DataSource;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -15,23 +10,10 @@ public class Dbconnection {
     private static BasicDataSource connectionPool = null;
 
     private Dbconnection() {
-        URI dbUri = null;
-        try {
-            dbUri = new URI(System.getenv("DATABASE_URL"));
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-        String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + dbUri.getPath();
         connectionPool = new BasicDataSource();
-
-        if (dbUri.getUserInfo() != null) {
-            connectionPool.setUsername(dbUri.getUserInfo().split(":")[0]);
-            connectionPool.setPassword(dbUri.getUserInfo().split(":")[1]);
-        }
         connectionPool.setDriverClassName("org.postgresql.Driver");
-        connectionPool.setUrl(dbUrl);
+        connectionPool.setUrl("jdbc:postgresql://ec2-107-20-149-243.compute-1.amazonaws.com:5432/d7gloj3v6puv1q?user=dqgbtpzuiwhuwt&password=3a9d7a669cbcbfbad2ec543e5d05190d7d36499a94bb9d05450f537b5cad322f&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory");
         connectionPool.setInitialSize(1);
-
     }
 
     public static Dbconnection getInstance() {
