@@ -21,7 +21,7 @@ public class CategoryDaoimpl implements CategoryDao {
         String sql= "select * from categories ORDER BY id";
         List<CategoryEntity> list = new ArrayList<>();
 
-        Connection connection = DbUtil.getConnection();
+        Connection connection = Dbconnection.getConnection();
 
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
