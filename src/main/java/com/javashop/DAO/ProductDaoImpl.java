@@ -26,7 +26,7 @@ public class ProductDaoImpl implements ProductDao{
                 ProductEntity product = new ProductEntity();
                 product.setId(rs.getInt("id"));
                 product.setName(rs.getString("name"));
-                product.setDescription(rs.getString("desc"));
+                product.setDescription(rs.getString("about"));
                 product.setPrice(rs.getFloat("price"));
                 list.add(product);
             }
@@ -61,7 +61,7 @@ public class ProductDaoImpl implements ProductDao{
             while (resultSet.next()){
                 product.setId(resultSet.getInt("id"));
                 product.setName(resultSet.getString("name"));
-                product.setDescription(resultSet.getString("desc"));
+                product.setDescription(resultSet.getString("about"));
                 product.setPrice(resultSet.getFloat("price"));
             }
 

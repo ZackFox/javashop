@@ -19,26 +19,23 @@ public class LoginController extends HttpServlet {
         String login = request.getParameter("login");
         String pass = request.getParameter("password");
 
-        System.out.println(request.getRequestURI());
-        System.out.println(request.getRequestURL());
-        System.out.println(request.getAttribute("javax.servlet.forward.request_uri"));
-
         CustomerDao dao = new CustomerDaoImpl();
         if (login!=null && pass!=null){
             CustomerProfile customer = dao.getCustomerByLogin(login,pass);
 
             if (!customer.getLogin().equals(login) && !customer.getPassword().equals(pass)){
-                response.sendRedirect("/catalog");
+                response.sendRedirect(request.getHeader("Referer").substring(21));
                 return;
             }
 
             HttpSession session = request.getSession();
             session.setAttribute("login", customer.getLogin());
             session.setAttribute("customer", customer);
-            response.sendRedirect("/catalog");
+
+            response.sendRedirect(request.getHeader("Referer").substring(21));
         }
         else{
-            response.sendRedirect("/catalog");
+            response.sendRedirect(request.getHeader("Referer").substring(21));
         }
     }
 }

@@ -11,7 +11,7 @@
 
                     <ul class="nav nav-sidebar">
                         <c:forEach var="cat" items="${applicationScope.categories}">
-                            <li><a href="catalog/category?id=${cat.id}">${cat.name}</a></li>
+                            <li><a href="/catalog/category?id=${cat.id}">${cat.name}</a></li>
                         </c:forEach>
                     </ul>
                 </aside>
@@ -28,6 +28,7 @@
                             </li>
                         </c:forEach>
                     </ul>
+                    <a href="#" class="btn btn-success" data-cat-id="" data-offset="20" >показать еще</a>
                 </div>
             </div>
         </div>

@@ -10,18 +10,18 @@ header{
     position: fixed;
     top: 0;
     background: #fff;
-    border-bottom: #9c27b0;
+    border-bottom: 3px solid #9c83ce;
     z-index:10;
 }
 
 .logo{
-    color: #9c27b0;
+    color: #9c83ce;
     font-size: 46px;
     text-decoration: none;
 }
 
 .logo:hover{
-    color: #9c27b0;
+    color: #9c83ce;
     text-decoration: none;
 }
 
@@ -85,6 +85,30 @@ nav li a{
     background: #fff;
     text-align: center;
     float: left;
+}
+
+
+
+.products li {
+    list-style:none;
+}
+
+.p_item{
+    display: block;
+    background:#fff;
+    width: 100%;
+    padding: 15px;
+    border-bottom: 3px solid #9c83ce;
+    margin-bottom:20px;
+}
+
+.p_item img {
+    width: 250px;
+}
+
+.product-content{
+    height: 100%;
+    background:#fff;
 }
 
 footer{
