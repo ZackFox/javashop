@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=utf-8" %>
 
-<jsp:include page="header.jsp"/>
+<jsp:include page="../views/header.jsp"/>
 
         <div class="container content-wrapper">
             <div class="row"><
@@ -9,9 +9,9 @@
                     <ul class="categories">
                         <c:forEach var="cat" items="${applicationScope.categories}">
                             <li >
-                                <a href="/catalog/category?id=${cat.id}" class="cat_item">
+                                <a href="/catalog/category?id=${cat.id}&offset=0" class="cat_item">
                                     <h3>${cat.name}</h3>
-                                    <img src="x" alt="">
+                                    <img src="" alt="">
                                 </a>
                             </li>
                         </c:forEach>
@@ -20,4 +20,5 @@
             </div>
         </div>
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="../views/footer.jsp"/>
+<jsp:include page="../views/scripts.jsp"/>

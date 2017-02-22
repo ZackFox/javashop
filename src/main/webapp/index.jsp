@@ -17,5 +17,7 @@
                 <p> приложение написано с применением servlet и jdbc </p>
             </div>
         </div>
+    <script src="<c:url value="/resources/js/jquery-3.1.1.min.js"/>"></script>
+    <script src="<c:url value="/resources/js/scripts.js"/>"></script>
     </body>
 </html>

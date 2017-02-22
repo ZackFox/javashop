@@ -16,3 +16,4 @@
         </div>
 
 <jsp:include page="footer.jsp"/>
+<jsp:include page="../views/scripts.jsp"/>

@@ -12,8 +12,8 @@ import java.util.List;
 public class ProductDaoImpl implements ProductDao{
 
     @Override
-    public List<ProductEntity> getProductsByCategoryId(int id) {
-        String sql= "select * from products WHERE cat_id=?";
+    public List<ProductEntity> getProductsByCategoryId(int id,int limit,int offset) {
+        String sql= "select * from products WHERE cat_id=? LIMIT "+limit+" OFFSET "+offset;
         List<ProductEntity> list = new ArrayList<>();
 
         Connection connection = DataBaseCPUtil.getConnection();
