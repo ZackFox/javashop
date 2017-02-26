@@ -1,4 +1,4 @@
-package com.javashop.security;
+package com.javashop.filters;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;

@@ -4,15 +4,29 @@
 	     http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
 
+    <servlet>
+        <servlet-name>catalog</servlet-name>
+        <jsp-file>/WEB-INF/views/catalog.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>catalog</servlet-name>
+        <url-pattern>/catalog</url-pattern>
+    </servlet-mapping>
+
     <!--<servlet>-->
-        <!--<servlet-name>catalog</servlet-name>-->
-        <!--<jsp-file>/WEB-INF/views/catalog.jsp</jsp-file>-->
+        <!--<servlet-name>cabinet</servlet-name>-->
+        <!--<jsp-file>/WEB-INF/views/cabinet.jsp</jsp-file>-->
     <!--</servlet>-->
 
     <!--<servlet-mapping>-->
-        <!--<servlet-name>catalog</servlet-name>-->
-        <!--<url-pattern>/catalog</url-pattern>-->
+        <!--<servlet-name>cabinet</servlet-name>-->
+        <!--<url-pattern>/cabinet</url-pattern>-->
     <!--</servlet-mapping>-->
+
+    <listener>
+        <listener-class>com.javashop.controller.ContextListener</listener-class>
+    </listener>
 
     <welcome-file-list>
       <welcome-file>index.jsp</welcome-file>

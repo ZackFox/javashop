@@ -8,6 +8,7 @@
         <link href="<c:url value="/resources/css/font-awesome.min.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/styles.css"/>" rel="stylesheet">
     </head>
+
     <body>
         <header>
             <div class="container">
@@ -49,7 +50,7 @@
                     <ul class="nav">
                         <li><a href="/catalog">Главная</a></li>
                         <c:forEach var="cat" items="${applicationScope.categories}">
-                            <li><a href="/catalog/category?id=${cat.id}&offset=0">${cat.name}</a></li>
+                            <li><a href="/catalog/category?id=${cat.id}">${cat.name}</a></li>
                         </c:forEach>
                     </ul>
                 </nav>

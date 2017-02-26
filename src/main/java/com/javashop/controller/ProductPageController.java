@@ -16,7 +16,7 @@ import java.io.IOException;
 
 
 @WebServlet("/catalog/product")
-public class AboutProductController extends HttpServlet {
+public class ProductPageController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.valueOf(request.getParameter("id"));

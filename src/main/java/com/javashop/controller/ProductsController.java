@@ -13,16 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-
 @WebServlet("/catalog/category")
 public class ProductsController extends HttpServlet {
     ProductDao dao = new ProductDaoImpl();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int cat_id = Integer.valueOf(request.getParameter("id"));
-        int offset = Integer.valueOf(request.getParameter("offset"));
 
-        List<ProductEntity> products = dao.getProductsByCategoryId(cat_id, 10, offset);
+        List<ProductEntity> products = dao.getProductsByCategoryId(cat_id, 10,0);
 
         request.setAttribute("products",products);
         request.getRequestDispatcher("/WEB-INF/views/products.jsp").forward(request,response);
@@ -42,3 +40,5 @@ public class ProductsController extends HttpServlet {
         response.getWriter().write(json);
     }
 }
+
+
