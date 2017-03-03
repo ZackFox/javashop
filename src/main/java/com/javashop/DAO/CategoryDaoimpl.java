@@ -28,6 +28,7 @@ public class CategoryDaoimpl implements CategoryDao {
                 CategoryEntity category = new CategoryEntity();
                 category.setId(rs.getInt("id"));
                 category.setName(rs.getString("name"));
+                category.setParentId(rs.getInt("parent_id"));
                 list.add(category);
             }
             ps.close();

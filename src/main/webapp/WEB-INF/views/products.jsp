@@ -7,11 +7,18 @@
         <div class="container content-wrapper">
             <div class="row">
                 <aside class="col-md-2">
-                    <h5>товары</h5>
-
                     <ul class="nav nav-sidebar">
                         <c:forEach var="cat" items="${applicationScope.categories}" >
-                            <li><a href="/catalog/category?id=${cat.id}">${cat.name}</a></li>
+                            <li>
+                                <a href="/catalog/category?id=${cat.id}">${cat.name}</a>
+                                <ul>
+                                    <c:forEach var="subcat" items="${cat.subCategories}">
+                                        <li>
+                                            <a href="/catalog/category?id=${subcat.id}">${subcat.name}</a>
+                                        </li>
+                                    </c:forEach>
+                                </ul>
+                            </li>
                         </c:forEach>
                     </ul>
                 </aside>

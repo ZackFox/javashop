@@ -1,7 +1,7 @@
 
 
 body{
-    background-color: #dfecf1;
+    background-color: #fff;
 }
 
 header{
@@ -12,6 +12,16 @@ header{
     background: #fff;
     border-bottom: 3px solid #9c83ce;
     z-index:10;
+}
+
+.top-header{
+     padding:5px 0;
+     background: #2196f2;
+ }
+
+.top-header a {
+    color: #fff;
+    margin-left: 20px;
 }
 
 .logo{
@@ -27,17 +37,19 @@ header{
 
 .search{
     width: 400px;
-    font-size: 28px;
-    margin: 15px 0 0 60px ;
-    padding:10px 15px;
+    font-size: 18px;
+    margin: 15px 0 0 20px ;
+    padding:4px 10px;
     border:2px solid #9c83ce;
     color: #9c83ce;
-    border-radius:30px;
+}
+
+.login-form{
+    float: right;
 }
 
 .login-form input{
     width:140px;
-    display: block;
     float: left;
     padding:2px 4px;
     margin-right: 5px;
@@ -46,9 +58,15 @@ header{
 .login-form .btn-login{
     width:inherit;
     display: inline-block;
-    padding: 2px 4px;
+    padding: 2px 10px;
     border-radius: 0;
     font-size: 14px;
+    background:#4CAF50;;
+    color: #fff;
+}
+
+.reg-btn{
+    
 }
 
 nav li {

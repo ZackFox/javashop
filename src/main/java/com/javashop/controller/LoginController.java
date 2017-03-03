@@ -19,9 +19,9 @@ public class LoginController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String login = request.getParameter("login");
         String pass = request.getParameter("password");
-        String path = new URL(request.getHeader("Referer")).getPath();
+        String path = request.getHeader("Referer").substring(21);
 
-        System.out.println(request.getHeader("Referer").indexOf('/'));
+        System.out.println(request.getHeader("Referer").substring(21));
 
         CustomerDao dao = new CustomerDaoImpl();
         if (login!=null && pass!=null){

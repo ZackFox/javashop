@@ -13,7 +13,7 @@ public class ProductDaoImpl implements ProductDao{
 
     @Override
     public List<ProductEntity> getProductsByCategoryId(int id,int limit,int offset) {
-        String sql= "select * from products WHERE cat_id=? LIMIT "+limit+" OFFSET "+offset;
+        String sql= "select * from products WHERE category_id=? LIMIT "+limit+" OFFSET "+offset;
         List<ProductEntity> list = new ArrayList<>();
 
         Connection connection = DataBaseCPUtil.getConnection();
@@ -25,8 +25,8 @@ public class ProductDaoImpl implements ProductDao{
             while (rs.next()){
                 ProductEntity product = new ProductEntity();
                 product.setId(rs.getInt("id"));
-                product.setName(rs.getString("name"));
-                product.setDescription(rs.getString("about"));
+                product.setName(rs.getString("title"));
+                product.setDescription(rs.getString("description"));
                 product.setPrice(rs.getFloat("price"));
                 list.add(product);
             }
@@ -60,8 +60,8 @@ public class ProductDaoImpl implements ProductDao{
 
             while (resultSet.next()){
                 product.setId(resultSet.getInt("id"));
-                product.setName(resultSet.getString("name"));
-                product.setDescription(resultSet.getString("about"));
+                product.setName(resultSet.getString("title"));
+                product.setDescription(resultSet.getString("description"));
                 product.setPrice(resultSet.getFloat("price"));
             }
 

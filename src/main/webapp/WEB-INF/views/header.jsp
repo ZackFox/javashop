@@ -11,6 +11,28 @@
 
     <body>
         <header>
+            <div class="top-header">
+                <div class="container">
+                    <a href="/info/shipping">Доставка</a>
+                    <a href="/info/buy">Оплата</a>
+                    <c:if test="${sessionScope.customer.id == 0}">
+                        <a href="registration/new/profile" class="reg-btn">Зарегистрироваться</a>
+                        <div class="login-form">
+                            <form action="/login" method="post">
+                                <input type="text" name="login" id="login" placeholder="логин">
+                                <input type="password" name="password" id="pass" placeholder="пароль">
+                                <input type="submit" class="btn btn-login" value="Войти">
+                            </form>
+                        </div>
+                    </c:if>
+
+                    <c:if test="${sessionScope.customer.id > 0}">
+                        <a href="/cabinet" class="personal">Личный кабинет(${sessionScope.customer.firstName} ${sessionScope.customer.lastName})</a>
+                        <a href="/logout" class="logout-btn">Выйти</a>
+                    </c:if>
+                </div>
+            </div>
+
             <div class="container">
                 <div class="row">
                     <div class="col-md-2">
@@ -27,22 +49,11 @@
                             <span>Вы вошли как ${sessionScope.customer.firstName} ${sessionScope.customer.lastName}</span>
                             <a href="registration/new/profile" class="login-btn">Зарегистрироваться</a>
                             <p>Для оформления заказа необходимо авторизоваться.</p>
-
-                            <div class="login-form">
-                                <form action="/login" method="post">
-                                    <input type="text" name="login" id="login" placeholder="логин">
-                                    <input type="password" name="password" id="pass" placeholder="пароль">
-                                    <input type="submit" class="btn btn-login" value="Войти">
-                                </form>
-                            </div>
                         </c:if>
 
                         <c:if test="${sessionScope.customer.id > 0}">
-                            <a href="/cabinet" class="personal">Личный кабинет (${sessionScope.customer.firstName} ${sessionScope.customer.lastName})</a>
-                            <a href="/cabinet/card" class="card">Карзина</a>
-                            <a href="/logout" class="logout-btn">Выйти</a>
+                            <a href="/cabinet/card" class="card"><i class="fa fa-shopping-cart"></i>Карзина</a>
                         </c:if>
-
                     </div>
                 </div>
 
