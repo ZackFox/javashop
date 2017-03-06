@@ -57,11 +57,20 @@
                     </div>
                 </div>
 
-                <nav>
-                    <ul class="nav">
-                        <li><a href="/catalog">Главная</a></li>
-                        <c:forEach var="cat" items="${applicationScope.categories}">
-                            <li><a href="/catalog/category?id=${cat.id}">${cat.name}</a></li>
+                <nav class="nav-menu">
+                    <span>Категории</span>
+                    <ul class="root-menu">
+                        <c:forEach var="cat" items="${applicationScope.categories}" >
+                            <li>
+                                <a href="/catalog/category?id=${cat.id}">${cat.name}</a>
+                                <ul class="sub-menu">
+                                    <c:forEach var="subcat" items="${cat.subCategories}">
+                                        <li>
+                                            <a href="/catalog/category?id=${subcat.id}">${subcat.name}</a>
+                                        </li>
+                                    </c:forEach>
+                                </ul>
+                            </li>
                         </c:forEach>
                     </ul>
                 </nav>

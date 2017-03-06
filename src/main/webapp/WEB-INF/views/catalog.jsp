@@ -4,8 +4,8 @@
 <jsp:include page="/WEB-INF/views/header.jsp"/>
 
         <div class="container content-wrapper">
-            <div class="row"><
-                <div class="col-md-12">
+            <div class="row">
+                <div class="products">
                     <ul class="categories">
                         <c:forEach var="cat" items="${applicationScope.categories}">
                             <li >

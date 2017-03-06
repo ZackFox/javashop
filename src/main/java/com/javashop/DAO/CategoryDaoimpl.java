@@ -13,14 +13,14 @@ import java.util.List;
 public class CategoryDaoimpl implements CategoryDao {
 
     @Override
-    public List<CategoryEntity> getAllCategorie() {
+    public List<CategoryEntity> getAllCategories() {
 
         String sql= "select * from categories ORDER BY id";
         List<CategoryEntity> list = new ArrayList<>();
-
-        Connection connection = DataBaseCPUtil.getConnection();
+        Connection connection = null;
 
         try {
+            connection = DataBaseCPUtil.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
@@ -44,7 +44,7 @@ public class CategoryDaoimpl implements CategoryDao {
             }
         }
 
-        return list;
+        return CategoryEntity.splitCategories(list);
     }
 
     @Override

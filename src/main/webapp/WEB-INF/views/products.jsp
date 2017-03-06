@@ -6,26 +6,26 @@
 
         <div class="container content-wrapper">
             <div class="row">
-                <aside class="col-md-2">
-                    <ul class="nav nav-sidebar">
-                        <c:forEach var="cat" items="${applicationScope.categories}" >
-                            <li>
-                                <a href="/catalog/category?id=${cat.id}">${cat.name}</a>
-                                <ul>
-                                    <c:forEach var="subcat" items="${cat.subCategories}">
-                                        <li>
-                                            <a href="/catalog/category?id=${subcat.id}">${subcat.name}</a>
-                                        </li>
-                                    </c:forEach>
-                                </ul>
-                            </li>
-                        </c:forEach>
-                    </ul>
-                </aside>
+                <%--<aside class="sidebar">--%>
+                    <%--<h4>Категории</h4>--%>
+                    <%--<ul class="nav nav-sidebar">--%>
+                        <%--<c:forEach var="cat" items="${applicationScope.categories}" >--%>
+                            <%--<li>--%>
+                                <%--<a href="/catalog/category?id=${cat.id}">${cat.name}</a>--%>
+                                <%--<ul class="sub-menu">--%>
+                                    <%--<c:forEach var="subcat" items="${cat.subCategories}">--%>
+                                        <%--<li>--%>
+                                            <%--<a href="/catalog/category?id=${subcat.id}">${subcat.name}</a>--%>
+                                        <%--</li>--%>
+                                    <%--</c:forEach>--%>
+                                <%--</ul>--%>
+                            <%--</li>--%>
+                        <%--</c:forEach>--%>
+                    <%--</ul>--%>
+                <%--</aside>--%>
 
-                <div class="col-md-10">
-                    <h3>продукты</h3>
-                    <ul class="products">
+                <div class="products">
+                    <ul>
                         <c:forEach var="prod" items="${products}" >
                             <li >
                                 <a href="/catalog/product?id=${prod.id}" class="p_item">

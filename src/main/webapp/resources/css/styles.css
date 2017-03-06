@@ -4,13 +4,21 @@ body{
     background-color: #fff;
 }
 
+
+a{
+    color: #9c83ce;
+}
+
+ul{
+    list-style: none;
+}
+
 header{
     width: 100%;
-    min-height: 117px;
-    position: fixed;
     top: 0;
     background: #fff;
     border-bottom: 3px solid #9c83ce;
+    position: relative;
     z-index:10;
 }
 
@@ -69,20 +77,8 @@ header{
     
 }
 
-nav li {
-    float: left;
-}
-
-nav li a{
-    font-family:monospace;
-    font-weight: 600;
-    font-size: 16px;
-    color: #9c83ce;
-}
-
-
 .content-wrapper{
-    margin-top: 180px;
+    margin-top: 50px;
 }
 
 .categories{
@@ -105,10 +101,77 @@ nav li a{
     float: left;
 }
 
+.nav-menu{
+    position: absolute;
+    background: #2196f2;
+    width: 240px;
+    border-radius: 0 0 10px 10px;
+}
+
+.nav-menu:hover{
+    border-radius: 0;
+}
+
+.nav-menu span{
+    display: block;
+    padding: 5px 10px;
+    font-size:18px;
+    font-weight: 600;
+    color: #fff;
+}
 
 
-.products li {
-    list-style:none;
+.root-menu{
+    display: none ;
+    min-height:230px;
+    padding-left:20px;
+    margin:0;
+    background: #f9f9f9;
+}
+
+.nav-menu:hover .root-menu{
+    display: block;
+}
+
+
+.root-menu>li>a{
+    display: block;
+    color: #9c83ce;
+    padding:12px 0;
+    font-family:monospace;
+    font-size: 16px;
+}
+
+.sub-menu{
+    display: none;
+    width: 200px;
+    height: 100%;
+    padding:10px;
+    position: absolute;
+    right: -200px;
+    top: 0;
+    background: #eee;
+    border:1px solid #eee;
+
+}
+
+li:hover .sub-menu{
+    display: block;
+}
+
+.subcat{
+    display: none;
+    width: 100%;
+    background: #eee;
+    position: absolute;
+    padding:10px;
+    left: 0;
+    top: 44px;;
+}
+
+.products {
+    width:80%;
+    float: left;
 }
 
 .p_item{
@@ -116,7 +179,6 @@ nav li a{
     background:#fff;
     width: 100%;
     padding: 15px;
-    border-bottom: 3px solid #9c83ce;
     margin-bottom:20px;
 }
 
