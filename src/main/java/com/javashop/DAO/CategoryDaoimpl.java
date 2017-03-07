@@ -1,6 +1,6 @@
 package com.javashop.DAO;
 
-import com.javashop.db.DataBaseCPUtil;
+import com.javashop.db.ConnectionPoolUtil;
 import com.javashop.model.CategoryEntity;
 
 import java.sql.Connection;
@@ -20,7 +20,7 @@ public class CategoryDaoimpl implements CategoryDao {
         Connection connection = null;
 
         try {
-            connection = DataBaseCPUtil.getConnection();
+            connection = ConnectionPoolUtil.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
@@ -47,7 +47,6 @@ public class CategoryDaoimpl implements CategoryDao {
         return CategoryEntity.splitCategories(list);
     }
 
-    @Override
     public void addCategory(CategoryEntity category) {
 
     }

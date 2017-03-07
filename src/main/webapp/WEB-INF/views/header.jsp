@@ -60,13 +60,14 @@
                 <nav class="nav-menu">
                     <span>Категории</span>
                     <ul class="root-menu">
-                        <c:forEach var="cat" items="${applicationScope.categories}" >
+                        <c:forEach var="root" items="${applicationScope.categories}" >
                             <li>
-                                <a href="/catalog/category?id=${cat.id}">${cat.name}</a>
+                                <a href="/catalog/category?type=root&id=${root.id}">${root.name}</a>
+
                                 <ul class="sub-menu">
-                                    <c:forEach var="subcat" items="${cat.subCategories}">
+                                    <c:forEach var="sub" items="${root.subCategories}">
                                         <li>
-                                            <a href="/catalog/category?id=${subcat.id}">${subcat.name}</a>
+                                            <a href="/catalog/category?type=sub&id=${sub.id}">${sub.name}</a>
                                         </li>
                                     </c:forEach>
                                 </ul>

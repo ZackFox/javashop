@@ -1,6 +1,6 @@
 package com.javashop.DAO;
 
-import com.javashop.db.DataBaseCPUtil;
+import com.javashop.db.ConnectionPoolUtil;
 import com.javashop.model.ProductEntity;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +16,7 @@ public class ProductDaoImpl implements ProductDao{
         String sql= "select * from products WHERE category_id=? LIMIT "+limit+" OFFSET "+offset;
         List<ProductEntity> list = new ArrayList<>();
 
-        Connection connection = DataBaseCPUtil.getConnection();
+        Connection connection = ConnectionPoolUtil.getConnection();
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1,id);
@@ -51,7 +51,7 @@ public class ProductDaoImpl implements ProductDao{
         String sql = "select * from products where id=?";
         ProductEntity product = new ProductEntity();
 
-        Connection connection = DataBaseCPUtil.getConnection();
+        Connection connection = ConnectionPoolUtil.getConnection();
 
         try {
             PreparedStatement ps = connection.prepareStatement(sql);

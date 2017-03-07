@@ -1,8 +1,11 @@
 package com.javashop.controller;
 
 import com.google.gson.Gson;
+import com.javashop.DAO.CategoryDao;
+import com.javashop.DAO.CategoryDaoimpl;
 import com.javashop.DAO.ProductDao;
 import com.javashop.DAO.ProductDaoImpl;
+import com.javashop.model.CategoryEntity;
 import com.javashop.model.ProductEntity;
 
 import javax.servlet.ServletException;
@@ -19,10 +22,24 @@ public class ProductsController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int cat_id = Integer.valueOf(request.getParameter("id"));
+        String type = request.getParameter("type");
 
-        List<ProductEntity> products = dao.getProductsByCategoryId(cat_id, 10,0);
+        if(type.equals("root")){
+            CategoryEntity category = null;
+            List<CategoryEntity> list = (List<CategoryEntity>)request.getServletContext().getAttribute("categories");
 
-        request.setAttribute("products",products);
+            for (CategoryEntity c : list) {
+                if (c.getId() == cat_id)
+                    category = c;
+            }
+
+            request.setAttribute("subcats",category.getSubCategories());
+        }
+        else if(type.equals("sub")){
+            List<ProductEntity> products = dao.getProductsByCategoryId(cat_id, 10,0);
+            request.setAttribute("products",products);
+        }
+
         request.getRequestDispatcher("/WEB-INF/views/products.jsp").forward(request,response);
     }
 

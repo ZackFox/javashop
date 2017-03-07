@@ -78,6 +78,7 @@ header{
 }
 
 .content-wrapper{
+    min-height: 500px;
     margin-top: 50px;
 }
 
@@ -170,8 +171,7 @@ li:hover .sub-menu{
 }
 
 .products {
-    width:80%;
-    float: left;
+
 }
 
 .p_item{
