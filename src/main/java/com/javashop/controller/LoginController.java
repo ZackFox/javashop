@@ -24,7 +24,7 @@ public class LoginController extends HttpServlet {
         System.out.println(request.getHeader("Referer").substring(21));
 
         CustomerDao dao = new CustomerDaoImpl();
-        if (login!=null && pass!=null){
+        if (login!=null && pass!=null && !login.equals("") && !pass.equals("")){
             CustomerProfile customer = dao.getCustomerByLogin(login,pass);
 
             if (!customer.getLogin().equals(login) && !customer.getPassword().equals(pass)){
