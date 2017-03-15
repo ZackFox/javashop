@@ -7,6 +7,7 @@ public class CategoryEntity {
     private Integer id;
     private String name;
     private int parentId;
+    private CategoryEntity parentCategory;
     private List<CategoryEntity> subCategories;
 
 
@@ -20,6 +21,14 @@ public class CategoryEntity {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public CategoryEntity getParentCategory() {
+        return parentCategory;
+    }
+
+    public void setParentCategory(CategoryEntity parentCategory) {
+        this.parentCategory = parentCategory;
     }
 
     public String getName() {
@@ -44,14 +53,9 @@ public class CategoryEntity {
 
     public static List<CategoryEntity> splitCategories(List<CategoryEntity> categories){
         for (int i = 0; i < categories.size(); i++) {
-            for (int j = i; j < categories.size();) {
-                if(categories.get(j).getParentId() !=0 && categories.get(i).getId() == categories.get(j).getParentId()){
+            for (int j = i; j < categories.size();j++) {
+                if(categories.get(j).getParentId() !=0 && categories.get(j).getParentId() == categories.get(i).getId() ) {
                     categories.get(i).getSubCategories().add(categories.get(j));
-                    categories.remove(j);
-                    continue;
-                }
-                else {
-                    j++;
                 }
             }
         }

@@ -1,38 +1,30 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html; charset=utf-8" %>
 
 <jsp:include page="header.jsp"/>
 
         <div class="container content-wrapper">
             <div class="row">
-                <div class="products">
-                    <c:if test="${!empty subcats}" >
-                        <ul class="categories">
-                            <c:forEach var="subcat" items="${subcats}">
-                                <li >
-                                    <a href="/catalog/category?type=sub&id=${subcat.id}" class="cat_item">
-                                        <h3>${subcat.name}</h3>
-                                        <img src="" alt="">
-                                    </a>
-                                </li>
-                            </c:forEach>
-                        </ul>
-                    </c:if>
 
-                    <c:if test="${!empty products}">
-                        <ul>
-                            <c:forEach var="prod" items="${products}" >
-                                <li >
-                                    <a href="/catalog/product?id=${prod.id}" class="p_item">
-                                        <h3>${prod.name}</h3>
-                                        <img src="" alt="">
-                                    </a>
-                                </li>
-                            </c:forEach>
-                        </ul>
-                        <a href="/" class="btn btn-success btn-more" data-offset="20">показать еще</a>
-                    </c:if>
+                <div class="sidebar">
+                    <h4>Брэнд</h4>
+                    <c:forEach var="brand" items="${brands}" >
+                        <a href="/catalog/category?id=${catId}&brand=${brand.id}">${brand.name}</a>
+                    </c:forEach>
+                </div>
+
+                <div class="products">
+                    <ul>
+                        <c:forEach var="prod" items="${products}" >
+                            <li>
+                                <a href="/catalog/product?id=${prod.id}" class="p_item">
+                                    <h3>${prod.name}</h3>
+                                    <img src="" alt="">
+                                </a>
+                            </li>
+                        </c:forEach>
+                    </ul>
+                    <%--<a href="/" class="btn btn-success btn-more" data-offset="20">показать еще</a>--%>
                 </div>
             </div>
         </div>

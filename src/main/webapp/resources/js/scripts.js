@@ -1,7 +1,22 @@
 $(document).ready(function () {
 
-    //получени id категории из параметров URL строки
+    // $.ajax({
+    //     type:"GET",
+    //     url:"/get/brand",
+    //     data: {catId:5},
+    //     success:function (json) {
+    //         var list = $.parseJSON(json);
+    //         var toAppend = '';
+    //
+    //         for (var i = 0; i < list.length; i++) {
+    //             toAppend += '<a href="/catalog/category?id=' + list[i].id + '" >'+ list[i].Name + '</a>';
+    //         }
+    //
+    //         $(".sidebar").append(toAppend);
+    //     }
+    // });
 
+    //получени id категории из параметров URL строки
     var urlParams;
     (window.onpopstate = function () {
         var match,

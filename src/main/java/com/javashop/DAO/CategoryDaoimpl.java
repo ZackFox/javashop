@@ -44,7 +44,7 @@ public class CategoryDaoimpl implements CategoryDao {
             }
         }
 
-        return CategoryEntity.splitCategories(list);
+        return list;
     }
 
     public void addCategory(CategoryEntity category) {

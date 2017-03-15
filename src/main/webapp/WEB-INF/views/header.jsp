@@ -16,7 +16,7 @@
                     <a href="/info/shipping">Доставка</a>
                     <a href="/info/buy">Оплата</a>
                     <c:if test="${sessionScope.customer.id == 0}">
-                        <a href="registration/new/profile" class="reg-btn">Зарегистрироваться</a>
+                        <a href="/registration/new" class="reg-btn">Зарегистрироваться</a>
                         <div class="login-form">
                             <form action="/login" method="post">
                                 <input type="text" name="login" id="login" placeholder="логин">
@@ -38,16 +38,39 @@
                     <div class="col-md-2">
                         <a href="/catalog" class="logo">Shopper</a>
                     </div>
-                    <div class="col-md-6">
-                        <form action="">
-                            <input type="text" class="search" placeholder="искать">
-                            <a href="/" class="fa fa-search"></a>
-                        </form>
+                    <div class="col-md-7">
+                        <div class="search-bar">
+                            <div class="nav-menu">
+                                <span>Категории</span>
+                                <ul class="root-menu">
+                                    <c:forEach var="menu1" items="${applicationScope.categories}" >
+                                        <c:if test="${menu1.parentId == 0}">
+                                            <li>
+                                                <a href="/catalog/category?id=${menu1.id}">${menu1.name}</a>
+                                                <ul class="sub-menu">
+                                                    <c:if test="${menu1.getSubCategories().size() > 0}">
+                                                        <c:forEach var="menu2" items="${menu1.subCategories}">
+                                                            <li>
+                                                                <a href="/catalog/category?id=${menu2.id}">${menu2.name}</a>
+                                                            </li>
+                                                        </c:forEach>
+                                                    </c:if>
+                                                </ul>
+                                            </li>
+                                        </c:if>
+                                    </c:forEach>
+                                </ul>
+                            </div>
+
+
+                            <form action="">
+                                <input type="text" class="search" placeholder="искать">
+                                <a href="/" class="fa fa-search"></a>
+                            </form>
+                        </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <c:if test="${sessionScope.customer.id == 0}">
-                            <span>Вы вошли как ${sessionScope.customer.firstName} ${sessionScope.customer.lastName}</span>
-                            <a href="registration/new/profile" class="login-btn">Зарегистрироваться</a>
                             <p>Для оформления заказа необходимо авторизоваться.</p>
                         </c:if>
 
@@ -56,24 +79,5 @@
                         </c:if>
                     </div>
                 </div>
-
-                <nav class="nav-menu">
-                    <span>Категории</span>
-                    <ul class="root-menu">
-                        <c:forEach var="root" items="${applicationScope.categories}" >
-                            <li>
-                                <a href="/catalog/category?type=root&id=${root.id}">${root.name}</a>
-
-                                <ul class="sub-menu">
-                                    <c:forEach var="sub" items="${root.subCategories}">
-                                        <li>
-                                            <a href="/catalog/category?type=sub&id=${sub.id}">${sub.name}</a>
-                                        </li>
-                                    </c:forEach>
-                                </ul>
-                            </li>
-                        </c:forEach>
-                    </ul>
-                </nav>
             </div>
         </header>

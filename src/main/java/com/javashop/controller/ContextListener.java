@@ -15,7 +15,7 @@ public class ContextListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent contextEvent) {
         ServletContext ctx = contextEvent.getServletContext();
         CategoryDao dao = new CategoryDaoimpl();
-        ctx.setAttribute("categories", dao.getAllCategories());
+        ctx.setAttribute("categories",CategoryEntity.splitCategories(dao.getAllCategories()));
     }
 
     @Override
