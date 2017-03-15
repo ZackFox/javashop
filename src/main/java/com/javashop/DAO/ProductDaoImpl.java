@@ -1,9 +1,8 @@
 package com.javashop.DAO;
 
 import com.javashop.db.ConnectionPoolUtil;
-import com.javashop.model.BrandEntity;
+import com.javashop.model.Brand;
 import com.javashop.model.ProductEntity;
-import com.sun.org.apache.bcel.internal.generic.BREAKPOINT;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -84,8 +83,8 @@ public class ProductDaoImpl implements ProductDao{
     }
 
     @Override
-    public List<BrandEntity> getBrandsByCategoryId(int id) {
-        List<BrandEntity> list = new ArrayList<>();
+    public List<Brand> getBrandsByCategoryId(int id) {
+        List<Brand> list = new ArrayList<>();
         String sql ="SELECT DISTINCT brands.id, brands.name FROM brands INNER JOIN products ON products.brand = brands.id WHERE products.category_id=?";
         Connection con = null;
 
@@ -97,7 +96,7 @@ public class ProductDaoImpl implements ProductDao{
 
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
-                BrandEntity brand= new BrandEntity();
+                Brand brand= new Brand();
                 brand.setId(rs.getInt("id"));
                 brand.setName(rs.getString("name"));
                 list.add(brand);

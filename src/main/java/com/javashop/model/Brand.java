@@ -1,16 +1,11 @@
 package com.javashop.model;
 
 
-public class BrandEntity {
-    int id;
-    String Name;
-
-    public BrandEntity() {
-
-    }
+public class Brand {
+    private int id;
+    private String Name;
 
     public int getId() {
-
         return id;
     }
 
