@@ -19,15 +19,15 @@ import java.util.List;
 public class BrandsJsonController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ProductDao dao = new ProductDaoImpl();
-        int catId = Integer.valueOf(request.getParameter("catId"));
-
-        List<BrandEntity> brands = dao.getBrandsByCategoryId(catId);
-        String json = new Gson().toJson(brands);
-
-        response.setContentType("text/plain");
-        response.setCharacterEncoding("utf-8");
-        response.getWriter().write(json);
+//        ProductDao dao = new ProductDaoImpl();
+//        int catId = Integer.valueOf(request.getParameter("catId"));
+//
+//        List<BrandEntity> brands = dao.getBrandsByCategoryId(catId);
+//        String json = new Gson().toJson(brands);
+//
+//        response.setContentType("text/plain");
+//        response.setCharacterEncoding("utf-8");
+//        response.getWriter().write(json);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
