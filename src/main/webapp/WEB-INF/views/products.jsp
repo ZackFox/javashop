@@ -8,12 +8,13 @@
 
                 <div class="sidebar">
                     <h4>Брэнд</h4>
-                    <c:forEach var="brand" items="${brands}" >
+                    <a href="/catalog/category?id=${catId}&brand=0">Все</a>
+                    <c:forEach var="brand" items="${brands}">
                         <a href="/catalog/category?id=${catId}&brand=${brand.id}">${brand.name}</a>
                     </c:forEach>
                 </div>
 
-                <div class="products">
+                <div class="products" data-cat-id="${catId}" data-brand-id="${brandId}">
                     <ul>
                         <c:forEach var="prod" items="${products}" >
                             <li>
@@ -24,7 +25,7 @@
                             </li>
                         </c:forEach>
                     </ul>
-                    <%--<a href="/" class="btn btn-success btn-more" data-offset="20">показать еще</a>--%>
+                    <a href="/" class="btn btn-success btn-more">показать еще</a>
                 </div>
             </div>
         </div>

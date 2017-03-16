@@ -51,7 +51,7 @@
                                                     <c:if test="${menu1.getSubCategories().size() > 0}">
                                                         <c:forEach var="menu2" items="${menu1.subCategories}">
                                                             <li>
-                                                                <a href="/catalog/category?id=${menu2.id}">${menu2.name}</a>
+                                                                <a href="/catalog/category?id=${menu2.id}&brand=0">${menu2.name}</a>
                                                             </li>
                                                         </c:forEach>
                                                     </c:if>

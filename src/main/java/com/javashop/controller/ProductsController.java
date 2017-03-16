@@ -19,12 +19,12 @@ public class ProductsController extends HttpServlet {
     ProductDao dao = new ProductDaoImpl();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int catId = 0; int brand = 0;
+        int catId = 0;
+        int brand = 0;
 
         if(request.getParameter("id") != null){
             catId = Integer.valueOf(request.getParameter("id"));
         }
-
         if(request.getParameter("brand") != null){
             brand = Integer.valueOf(request.getParameter("brand"));
         }
@@ -42,14 +42,15 @@ public class ProductsController extends HttpServlet {
             return;
         }
         else{
-            if(brand>0){
-                request.setAttribute("products",dao.getFilteredProductsByCategoryId(brand,catId,10,0));
-            }
-            else{
-                request.setAttribute("products",dao.getProductsByCategoryId(catId,5,0));
-            }
+//            if(brand>0){
+//                request.setAttribute("products",dao.getFilteredProductsByCategoryId(brand,catId,3,0));
+//            }
+//            else{
+//                request.setAttribute("products",dao.getProductsByCategoryId(catId,3,0));
+//            }
 
             request.setAttribute("catId",catId);
+            request.setAttribute("brandId",brand);
             request.setAttribute("brands",dao.getBrandsByCategoryId(catId));
             request.getRequestDispatcher("/WEB-INF/views/products.jsp").forward(request,response);
             return;
@@ -61,15 +62,6 @@ public class ProductsController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        int cat_id = Integer.valueOf(request.getParameter("catId"));
-        int offset = Integer.valueOf(request.getParameter("shift"));
-
-        List<ProductEntity> products = dao.getProductsByCategoryId(cat_id, 10, offset);
-        String json = new Gson().toJson(products);
-
-        response.setContentType("text/plain");
-        response.setCharacterEncoding("utf-8");
-        response.getWriter().write(json);
     }
 }
 
