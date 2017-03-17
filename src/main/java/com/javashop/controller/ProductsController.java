@@ -19,7 +19,7 @@ public class ProductsController extends HttpServlet {
     ProductDao dao = new ProductDaoImpl();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int cat_id = 0, brand_id = 0, page = 0;
+        int cat_id = 1, brand_id = 0, offset = 0, limit = 4;
 
         if(request.getParameter("id") != null){
             cat_id = Integer.valueOf(request.getParameter("id"));
@@ -29,8 +29,8 @@ public class ProductsController extends HttpServlet {
             brand_id = Integer.valueOf(request.getParameter("brand"));
         }
 
-        if(request.getParameter("page") != null){
-            page = Integer.valueOf(request.getParameter("page"));
+        if(request.getParameter("offset") != null){
+            offset = Integer.valueOf(request.getParameter("offset"));
         }
 
         CategoryEntity category = null;
@@ -47,19 +47,13 @@ public class ProductsController extends HttpServlet {
         else{
             request.setAttribute("catId",cat_id);
             request.setAttribute("brandId",brand_id);
+            request.setAttribute("offset",offset);
+            request.setAttribute("limit",limit);
 
+            request.setAttribute("products", dao.getProductsByCategoryId(cat_id, brand_id,limit+1,offset));
             request.setAttribute("brands",dao.getBrandsByCategoryId(cat_id));
-            request.setAttribute("products",dao.getProductsByCategoryId(cat_id, brand_id, 3, 0));
             request.getRequestDispatcher("/WEB-INF/views/products.jsp").forward(request,response);
-            return;
         }
-
-
-    }
-
-
-    private void getSubCategories(HttpServletRequest request, HttpServletResponse response  ){
-
     }
 
     @Override

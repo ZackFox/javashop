@@ -11,7 +11,6 @@
                     <li >
                         <a href="/catalog/category?id=${sub.id}" class="cat_item">
                             <h3>${sub.name}</h3>
-                            <img src="" alt="">
                         </a>
                     </li>
                 </c:forEach>

@@ -18,19 +18,38 @@
 
                 <div class="products">
                     <ul>
-                        <c:forEach var="prod" items="${products}" >
+                        <c:forEach var="prod" items="${products}" varStatus="i">
                             <li>
-                                <a href="/catalog/product?id=${prod.id}" class="p_item">
-                                    <h3>${prod.name}</h3>
-                                    <img src="<c:url value="/resources/img/pic8.jpg" />" alt="картинка">
-                                </a>
+                                <c:if test="${limit - i.index > 0 }">
+                                    <a href="/catalog/product?id=${prod.id}" class="p_item">
+                                        <h3>${prod.name}</h3>
+                                        <img src="<c:url value="/resources/img/pic8.jpg" />" alt="картинка">
+                                    </a>
+                                </c:if>
                             </li>
                         </c:forEach>
                     </ul>
-                    <a href="/" class="btn btn-success btn-more">показать еще</a>
+
+                    <c:if test="${offset-limit >= 0}">
+                        <a href="/catalog/category?id=${catId}&brand=${brandId}&offset=${offset-limit}" class="btn" >Назад</a>
+                    </c:if>
+                    <c:if test="${offset-limit < 0}">
+                        <a href="#" class="btn" disabled>Назад</a>
+                    </c:if>
+
+                    <c:if test="${products.size() > limit }">
+                        <a href="/catalog/category?id=${catId}&brand=${brandId}&offset=${offset+(limit)}" class="btn" >Вперед</a>
+                    </c:if>
+
+                    <c:if test="${products.size() <= limit }">
+                        <a href="#" class="btn" disabled>Вперед</a>
+                    </c:if>
                 </div>
             </div>
         </div>
+
+
+
 
 <jsp:include page="footer.jsp"/>
 <script src="<c:url value="/resources/js/scripts.js"/>"></script>

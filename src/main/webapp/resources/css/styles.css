@@ -178,16 +178,17 @@ li:hover .sub-menu{
     list-style:none;
 }
 
-.cat_item img{ width: 180px;}
+.cat_item img{ width: 100%;}
 
 .cat_item{
     display: block;
-    width:80%;
-    padding:10px;
+    width: 355px;
+    height:200px;
+    padding: 10px;
     background: #fff;
-    margin:0 auto;
-    margin-bottom: 30px;
-    box-shadow: 1px 1px 4px -1px #9398c1;
+    float: left;
+    margin: 0 17px 20px 17px;
+    box-shadow: 1px 1px 4px -1px #9398c1
 }
 
 .products ul{
