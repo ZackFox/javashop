@@ -1,7 +1,7 @@
 package com.javashop.model;
 
 
-public class Brand {
+public class BrandEntity {
     private int id;
     private String Name;
 

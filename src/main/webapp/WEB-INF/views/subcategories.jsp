@@ -3,7 +3,7 @@
 
 <jsp:include page="header.jsp"/>
 
-<div class="container">
+<div class="container content-wrapper">
     <div class="row">
         <c:if test="${!empty subCategories}">
             <ul class="categories">

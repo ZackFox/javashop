@@ -8,19 +8,21 @@
 
                 <div class="sidebar">
                     <h4>Брэнд</h4>
-                    <a href="/catalog/category?id=${catId}&brand=0">Все</a>
-                    <c:forEach var="brand" items="${brands}">
-                        <a href="/catalog/category?id=${catId}&brand=${brand.id}">${brand.name}</a>
-                    </c:forEach>
+                    <div class="brands">
+                        <a href="/catalog/category?id=${catId}&brand=0">Все</a>
+                        <c:forEach var="brand" items="${brands}">
+                            <a href="/catalog/category?id=${catId}&brand=${brand.id}">${brand.name}</a>
+                        </c:forEach>
+                    </div>
                 </div>
 
-                <div class="products" data-cat-id="${catId}" data-brand-id="${brandId}">
+                <div class="products">
                     <ul>
                         <c:forEach var="prod" items="${products}" >
                             <li>
                                 <a href="/catalog/product?id=${prod.id}" class="p_item">
                                     <h3>${prod.name}</h3>
-                                    <img src="" alt="">
+                                    <img src="<c:url value="/resources/img/pic8.jpg" />" alt="картинка">
                                 </a>
                             </li>
                         </c:forEach>

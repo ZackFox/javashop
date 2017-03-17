@@ -1,4 +1,4 @@
-package com.javashop.controller;
+package com.javashop.controller.json;
 
 import com.google.gson.Gson;
 import com.javashop.DAO.ProductDao;
@@ -27,9 +27,9 @@ public class ProductsJsonController extends HttpServlet {
         List<ProductEntity> products = null;
 
         if(brandId != 0){
-            products = dao.getFilteredProductsByCategoryId(brandId,catId,limit,offset);
+
         }else{
-            products = dao.getProductsByCategoryId(catId,limit,offset);
+
         }
 
         String json = new Gson().toJson(products);

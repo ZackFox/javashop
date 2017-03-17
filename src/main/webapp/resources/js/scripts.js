@@ -1,38 +1,76 @@
-
-var catId = $(".products").data("cat-id");
-var brandId = $(".products").data("brand-id");
-var limit = 2, offset = 0;
-
-function loadData () {
-    $.ajax({
-        type:"GET",
-        url:"/get/products",
-        data:{catId: catId, brandId: brandId, offset: offset, limit: limit},
-        success: function (json) {
-            var list = $.parseJSON(json);
-            var toAppend='';
-
-            if(list.length != 0){
-                for (var i =0; i<list.length;i++) {
-                    toAppend +=
-                        '<li ><a href="/catalog/product?id='
-                        + list[i].id
-                        + '" class="p_item"><h3>'
-                        + list[i].name
-                        + '</h3><img src="" alt=""> </a></li>';
-                }
-
-                $(".products ul").append(toAppend);
-                offset += limit;
-            }
-        }
-    });
-}
-loadData();
-
-$(document).ready(function () {
-    $(".btn-more").click(function(e) {
-        e.preventDefault();
-        loadData();
-    })
-});
+//
+//
+// $(document).ready(function () {
+//     var cat_id = $(".products").data("category");
+//     var limit, offset;
+//
+//     getBrands(cat_id);
+//
+//     $(".brands").on("click",".brand",function(e){
+//         e.preventDefault();
+//         limit = 10;
+//         offset = 0;
+//         var brand_id = $(this).data("brand");
+//
+//         $(".products ul").text("");
+//         getProducts(brand_id);
+//         console.log(offset);
+//     });
+//
+//
+//     // var brandId = 0; var limit = 10, offset = 0;
+//     // getProducts();
+//     // $(".btn-more").click(function(e) {
+//     //     e.preventDefault();
+//     //     getProducts();
+//     // });
+//
+//
+//
+//     function getProducts (brand_id) {
+//         $.ajax({
+//             type:"GET",
+//             url:"/get/products",
+//             data:{catId: cat_id, brandId: brand_id, offset: offset, limit: limit},
+//             success: function (json) {
+//                 var list = $.parseJSON(json);
+//                 var toAppend='';
+//
+//                 if(list.length != 0){
+//                     for (var i =0; i<list.length;i++) {
+//                         toAppend +=
+//                             '<li ><a href="/catalog/product?id='
+//                             + list[i].id
+//                             + '" class="p_item"><h3>'
+//                             + list[i].name
+//                             + '</h3><img src="/resources/img/pic8.jpg" alt=""> </a></li>';
+//                     }
+//                     $(".products ul").append(toAppend);
+//                     offset += limit;
+//                 }
+//             }
+//         });
+//     }
+//
+// });
+//
+// function getBrands (c) {
+//     $.ajax({
+//         type:"GET",
+//         url:"/get/brands",
+//         data:{catId: c},
+//         success: function (json) {
+//             var brands = $.parseJSON(json);
+//             var toAppend='<a href="/" class="brand" data-brand="0">Все</a>';
+//
+//             if(brands.length != 0){
+//                 for (var i = 0; i < brands.length; i++) {
+//                     toAppend += '<a href="/" class="brand" data-brand="'+brands[i].id+'">'+brands[i].Name+'</a>';
+//                 }
+//                 $(".brands").append(toAppend);
+//             }
+//         }
+//     });
+// }
+//
+//

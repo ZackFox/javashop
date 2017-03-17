@@ -1,7 +1,7 @@
 package com.javashop.DAO;
 
 import com.javashop.db.ConnectionPoolUtil;
-import com.javashop.model.Brand;
+import com.javashop.model.BrandEntity;
 import com.javashop.model.ProductEntity;
 
 import java.sql.Connection;
@@ -14,14 +14,24 @@ import java.util.List;
 public class ProductDaoImpl implements ProductDao{
 
     @Override
-    public List<ProductEntity> getProductsByCategoryId(int id,int limit,int offset) {
-        String sql= "select * from products WHERE category_id=? LIMIT "+limit+" OFFSET "+offset;
+    public List<ProductEntity> getProductsByCategoryId(int catId, int brandId, int limit, int offset) {
+        String sql = "";
+        if (brandId != 0){
+            sql = "select * from products WHERE category_id=? AND brand=? LIMIT "+limit+" OFFSET "+offset;
+        }else{
+            sql = "select * from products WHERE category_id=? LIMIT "+limit+" OFFSET "+offset;
+        }
+
+
         List<ProductEntity> list = new ArrayList<>();
 
         Connection connection = ConnectionPoolUtil.getConnection();
         try {
+
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1,id);
+            ps.setInt(1, catId);
+
+            if (brandId != 0) ps.setInt(2, brandId);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
@@ -48,43 +58,8 @@ public class ProductDaoImpl implements ProductDao{
     }
 
     @Override
-    public List<ProductEntity> getFilteredProductsByCategoryId(int brandId, int catId, int limit, int offset) {
-        String sql= "select * from products WHERE category_id=? AND brand=? LIMIT "+limit+" OFFSET "+offset;
-        List<ProductEntity> list = new ArrayList<>();
-
-        Connection connection = ConnectionPoolUtil.getConnection();
-        try {
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1,catId);
-            ps.setInt(2,brandId);
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()){
-                ProductEntity product = new ProductEntity();
-                product.setId(rs.getInt("id"));
-                product.setName(rs.getString("title"));
-                product.setDescription(rs.getString("description"));
-                product.setPrice(rs.getFloat("price"));
-                list.add(product);
-            }
-            ps.close();
-
-        }catch (SQLException e) {
-            e.printStackTrace();
-        }
-        finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return list;
-    }
-
-    @Override
-    public List<Brand> getBrandsByCategoryId(int id) {
-        List<Brand> list = new ArrayList<>();
+    public List<BrandEntity> getBrandsByCategoryId(int id) {
+        List<BrandEntity> list = new ArrayList<>();
         String sql ="SELECT DISTINCT brands.id, brands.name FROM brands INNER JOIN products ON products.brand = brands.id WHERE products.category_id=?";
         Connection con = null;
 
@@ -96,7 +71,7 @@ public class ProductDaoImpl implements ProductDao{
 
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
-                Brand brand= new Brand();
+                BrandEntity brand= new BrandEntity();
                 brand.setId(rs.getInt("id"));
                 brand.setName(rs.getString("name"));
                 list.add(brand);
