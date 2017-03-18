@@ -27,7 +27,7 @@
                                     </div>
                                         <div class="p-content clearfix">
                                         <div class="image">
-                                            <img src="<c:url value="${pageContext.request.contextPath}/resources/img/pic8.jpg"/>" alt="картинка">
+                                            <img src="<c:url value="/resources/img/pic8.jpg"/>" alt="картинка">
                                         </div>
                                         <div class="desctription">
                                             <p>${prod.description}</p>
