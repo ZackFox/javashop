@@ -19,14 +19,20 @@
                 <div class="products">
                     <ul>
                         <c:forEach var="prod" items="${products}" varStatus="i">
-                            <li>
-                                <c:if test="${limit - i.index > 0 }">
-                                    <a href="/catalog/product?id=${prod.id}" class="p_item">
-                                        <h3>${prod.name}</h3>
-                                        <img src="<c:url value="/resources/img/pic8.jpg" />" alt="картинка">
-                                    </a>
-                                </c:if>
-                            </li>
+                            <c:if test="${limit - i.index > 0 }">
+                                <li class="p_item">
+                                    <div class="title-block clearfix">
+                                        <a href="/catalog/product?id=${prod.id}">${prod.name}</a>
+                                        <p class="price">${prod.price}<span>Р.</span></p>
+                                    </div>
+                                        <div class="p-content clearfix">
+                                        <div class="image"><img src="<c:url value="/resources/img/pic8.jpg"/>" alt="картинка"></div>
+                                        <div class="desctription">
+                                            <p>${prod.description}</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </c:if>
                         </c:forEach>
                     </ul>
 

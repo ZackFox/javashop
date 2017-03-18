@@ -204,9 +204,43 @@ li:hover .sub-menu{
     box-shadow: 1px 1px 6px 0px #9398c1;
 }
 
-.p_item img {
-    width: 250px;
+.title-block a{
+    display: block;
+    float: left;
+    padding: 5px;
+    font-size: 20px;
 }
+
+.p-content{
+    clear: both;
+    width:100%;
+}
+
+.price {
+    display: block;
+    float: right;
+    font-size:25px;
+    font-weight:800;
+    margin: 0;
+}
+
+.image {
+    width: 27%;
+    float: left;
+}
+
+.image img{
+    width:100%;
+}
+
+.desctription {
+    width: 50%;
+    float: left;
+    margin-left:5%;
+}
+
+
+
 
 .product-content{
     height: 100%;

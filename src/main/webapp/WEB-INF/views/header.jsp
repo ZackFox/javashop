@@ -75,7 +75,7 @@
                         </c:if>
 
                         <c:if test="${sessionScope.customer.id > 0}">
-                            <a href="/cabinet/card" class="card"><i class="fa fa-shopping-cart"></i>Карзина</a>
+                            <a href="/cabinet/card" class="card"><i class="fa fa-shopping-cart"></i>Корзина</a>
                         </c:if>
                     </div>
                 </div>
