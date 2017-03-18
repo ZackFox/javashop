@@ -26,7 +26,9 @@
                                         <p class="price">${prod.price}<span>Р.</span></p>
                                     </div>
                                         <div class="p-content clearfix">
-                                        <div class="image"><img src="<c:url value="/resources/img/pic8.jpg"/>" alt="картинка"></div>
+                                        <div class="image">
+                                            <img src="<c:url value="../../resources/img/pic8.jpg"/>" alt="картинка">
+                                        </div>
                                         <div class="desctription">
                                             <p>${prod.description}</p>
                                         </div>
