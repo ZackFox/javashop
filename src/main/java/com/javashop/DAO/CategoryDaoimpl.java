@@ -1,7 +1,7 @@
 package com.javashop.DAO;
 
 import com.javashop.db.ConnectionPoolUtil;
-import com.javashop.model.CategoryEntity;
+import com.javashop.model.Category;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,10 +13,10 @@ import java.util.List;
 public class CategoryDaoimpl implements CategoryDao {
 
     @Override
-    public List<CategoryEntity> getAllCategories() {
+    public List<Category> getAllCategories() {
 
         String sql= "select * from categories ORDER BY id";
-        List<CategoryEntity> list = new ArrayList<>();
+        List<Category> list = new ArrayList<>();
         Connection connection = null;
 
         try {
@@ -25,7 +25,7 @@ public class CategoryDaoimpl implements CategoryDao {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
-                CategoryEntity category = new CategoryEntity();
+                Category category = new Category();
                 category.setId(rs.getInt("id"));
                 category.setName(rs.getString("name"));
                 category.setParentId(rs.getInt("parent_id"));
@@ -47,7 +47,7 @@ public class CategoryDaoimpl implements CategoryDao {
         return list;
     }
 
-    public void addCategory(CategoryEntity category) {
+    public void addCategory(Category category) {
 
     }
 

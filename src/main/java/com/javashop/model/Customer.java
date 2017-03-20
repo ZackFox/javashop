@@ -1,7 +1,7 @@
 package com.javashop.model;
 
 
-public class CustomerProfile {
+public class Customer {
     private Integer id;
     private String login;
     private String password;
@@ -11,7 +11,7 @@ public class CustomerProfile {
     private String phoneNumber;
     private String email;
 
-    public CustomerProfile() {
+    public Customer() {
         id = 0;
         firstName = "Гость";
         login = "гость";

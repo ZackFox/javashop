@@ -1,18 +1,18 @@
 package com.javashop.model;
 
-public class ProductEntity {
+public class Product {
     private int id;
     private String name;
     private float price ;
     private String description;
 
-    public ProductEntity() {
+    public Product() {
 
     }
 
     @Override
     public String toString() {
-        return "ProductEntity{" +
+        return "Product{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +

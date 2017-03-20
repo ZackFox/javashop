@@ -13,6 +13,13 @@ ul{
     list-style: none;
 }
 
+body .activated{
+    display: block;
+}
+body .deactivated{
+    display: none;
+}
+
 header{
     width: 100%;
     top: 0;
@@ -22,15 +29,25 @@ header{
     z-index:10;
 }
 
-.top-header{
-     padding:5px 0;
-     background: #2196f2;
- }
+.top-header {
+    padding: 5px 0;
+    background: #2196f2;
+}
 
-.top-header a {
+.top-header span{
+    float: left;
+    font-size:17px;
+    font-weight:600;
+    color: #fff;
+}
+
+.top-header a{
     color: #fff;
     margin-left: 20px;
+    float: left;
 }
+
+
 
 .logo{
     color: #9c83ce;
@@ -43,7 +60,11 @@ header{
     text-decoration: none;
 }
 
-.login-form{
+.cabinet, .logout, .cart{
+    display: none;
+}
+
+.login-form,a .logout{
     float: right;
 }
 
@@ -52,6 +73,7 @@ header{
     float: left;
     padding:2px 4px;
     margin-right: 5px;
+    border: none;
 }
 
 .login-form .btn-login{
@@ -62,10 +84,6 @@ header{
     font-size: 14px;
     background:#4CAF50;;
     color: #fff;
-}
-
-.reg-btn{
-    
 }
 
 
@@ -141,18 +159,21 @@ li:hover .sub-menu{
 }
 .search-bar form a {
     position: absolute;
-    right: -10px;
-    top: 0px;
+    right: 8px;
+    top: 8px;
 }
 
 .search{
-    width: 400px;
+    width: 350px;
     font-size: 18px;
     padding:4px 10px;
-    border:2px solid #2196f3;
+    border:1px solid #2196f3;
     color: #ccc;
 }
 
+.cart{
+
+}
 
 .subcat{
     display: none;
@@ -204,6 +225,11 @@ li:hover .sub-menu{
     box-shadow: 1px 1px 6px 0px #9398c1;
 }
 
+
+.title-block {
+    margin-bottom: 15px;
+}
+
 .title-block a{
     display: block;
     float: left;
@@ -225,12 +251,20 @@ li:hover .sub-menu{
 }
 
 .image {
-    width: 27%;
+    width: 25%  ;
+    height: 220px;
     float: left;
+    position: relative;
 }
 
 .image img{
-    width: 250px;
+    height: 100%;
+    position: absolute;
+    margin:auto;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
 }
 
 .desctription {
@@ -267,7 +301,7 @@ li:hover .sub-menu{
 
 footer{
     width: 100%;
-    height: 200px;
+    color: #fff;
     padding: 10px;
     background: #657079;
 }

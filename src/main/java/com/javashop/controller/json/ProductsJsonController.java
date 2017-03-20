@@ -3,7 +3,7 @@ package com.javashop.controller.json;
 import com.google.gson.Gson;
 import com.javashop.DAO.ProductDao;
 import com.javashop.DAO.ProductDaoImpl;
-import com.javashop.model.ProductEntity;
+import com.javashop.model.Product;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,7 +24,7 @@ public class ProductsJsonController extends HttpServlet {
         int limit = Integer.valueOf(request.getParameter("limit"));
 
         ProductDao dao = new ProductDaoImpl();
-        List<ProductEntity> products = null;
+        List<Product> products = null;
 
         if(brandId != 0){
 

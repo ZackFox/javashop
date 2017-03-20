@@ -1,6 +1,26 @@
-//
-//
-// $(document).ready(function () {
+
+$(document).ready(function () {
+    $(".p_item").on("click",".to-cart",function(event) {
+        event.preventDefault();
+        var id = $(this).attr("id").slice(5);
+        var i = 0;
+        var item = {};
+
+        item.id = id.parse();
+        item.quantity = 1;
+
+        $.ajax({
+            url:"/cart/add",
+            type:"POST",
+            data:{item: JSON.stringify(item)},
+            success:function (){
+                console.log();
+            }   
+        });
+    })
+ });
+
+
 //     var cat_id = $(".products").data("category");
 //     var limit, offset;
 //

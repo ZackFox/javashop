@@ -1,12 +1,12 @@
 package com.javashop.DAO;
 
-import com.javashop.model.BrandEntity;
-import com.javashop.model.ProductEntity;
+import com.javashop.model.Brand;
+import com.javashop.model.Product;
 
 import java.util.List;
 
 public interface ProductDao {
-    List<ProductEntity> getProductsByCategoryId(int catId, int brandId, int limit, int offset);
-    List<BrandEntity> getBrandsByCategoryId(int id);
-    ProductEntity getProductById(int id);
+    List<Product> getProductsByCategoryId(int catId, int brandId, int limit, int offset);
+    List<Brand> getBrandsByCategoryId(int id);
+    Product getProductById(int id);
 }

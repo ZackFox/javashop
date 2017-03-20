@@ -2,7 +2,7 @@ package com.javashop.controller;
 
 import com.javashop.DAO.CustomerDao;
 import com.javashop.DAO.CustomerDaoImpl;
-import com.javashop.model.CustomerProfile;
+import com.javashop.model.Customer;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,12 +23,12 @@ public class RegController extends HttpServlet {
         String login = request.getParameter("login");
         String pass = request.getParameter("password");
 
-        CustomerProfile newCustomer = new CustomerProfile();;
+        Customer newCustomer = new Customer();;
         CustomerDao dao = new CustomerDaoImpl();
 
-        List<CustomerProfile> list = dao.getAllCustomers();
+        List<Customer> list = dao.getAllCustomers();
 
-        for (CustomerProfile customer : list) {
+        for (Customer customer : list) {
             if (customer.getLogin().equals(login)){
                 request.getRequestDispatcher("/WEB-INF/views/regpage.jsp").forward(request,response);
             }
@@ -43,9 +43,10 @@ public class RegController extends HttpServlet {
         dao.addCustomer(newCustomer);
 
         HttpSession session = request.getSession();
-        session.setAttribute("login",newCustomer);
-        response.sendRedirect("/products");
+        session.setAttribute("login",newCustomer.getId());
+        session.setAttribute("customer",newCustomer);
 
+        response.sendRedirect("/catalog");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -7,29 +7,36 @@
         <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/font-awesome.min.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/styles.css"/>" rel="stylesheet">
+
+
+        <script src="<c:url value="/resources/js/jquery-3.1.1.min.js"/>"></script>
+        <script src="<c:url value="/resources/js/menu.js"/>"></script>
     </head>
 
     <body>
+        <c:if test="${sessionScope.customer.id > 0}">
+            <c:set value="activated" var="on"/>
+            <c:set value="deactivated" var="off"/>
+        </c:if>
+
         <header>
             <div class="top-header">
                 <div class="container">
+                    <span>8-800-550-55-22</span>
                     <a href="/info/shipping">Доставка</a>
                     <a href="/info/buy">Оплата</a>
-                    <c:if test="${sessionScope.customer.id == 0}">
-                        <a href="/registration/new" class="reg-btn">Зарегистрироваться</a>
-                        <div class="login-form">
+                    <a href="/registration/new" class="reg-btn ${off}">Зарегистрироваться</a>
+
+                    <a href="/cabinet" class="cabinet ${on}">Личный кабинет()</a>
+                    <a href="/logout" class="logout ${on}">Выйти</a>
+
+                        <div class="login-form ${off}">
                             <form action="/login" method="post">
-                                <input type="text" name="login" id="login" placeholder="логин">
-                                <input type="password" name="password" id="pass" placeholder="пароль">
+                                <input type="text" name="login" id="login" placeholder="логин" required>
+                                <input type="password" name="password" id="pass" placeholder="пароль" required>
                                 <input type="submit" class="btn btn-login" value="Войти">
                             </form>
                         </div>
-                    </c:if>
-
-                    <c:if test="${sessionScope.customer.id > 0}">
-                        <a href="/cabinet" class="personal">Личный кабинет(${sessionScope.customer.firstName} ${sessionScope.customer.lastName})</a>
-                        <a href="/logout" class="logout-btn">Выйти</a>
-                    </c:if>
                 </div>
             </div>
 
@@ -70,13 +77,17 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <c:if test="${sessionScope.customer.id == 0}">
-                            <p>Для оформления заказа необходимо авторизоваться.</p>
-                        </c:if>
 
-                        <c:if test="${sessionScope.customer.id > 0}">
-                            <a href="/cabinet/card" class="card"><i class="fa fa-shopping-cart"></i>Корзина</a>
-                        </c:if>
+                        <div class="message ${off}">
+                            <p>Для оформления заказа необходимо авторизоваться.</p>
+                        </div>
+
+                        <div class="cart ${on}">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span href="/cabinet/card" class="cart-count">0</span>
+                            <span href="/cabinet/card" class="cart-total">0</span>
+                            <a href="/cabinet/card" class="card">Посмотреть корзину</a>
+                        </div>
                     </div>
                 </div>
             </div>

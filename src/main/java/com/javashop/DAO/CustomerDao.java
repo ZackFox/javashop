@@ -1,13 +1,13 @@
 package com.javashop.DAO;
 
-import com.javashop.model.CustomerProfile;
+import com.javashop.model.Customer;
 import java.util.List;
 
 public interface CustomerDao {
-    List<CustomerProfile> getAllCustomers();
-    CustomerProfile getCustomerById(int id);
-    CustomerProfile getCustomerByLogin(String login,String pass);
-    void addCustomer(CustomerProfile customer);
-    void updateCustomer(CustomerProfile customer);
+    List<Customer> getAllCustomers();
+    Customer getCustomerById(int id);
+    Customer getCustomerByLogin(String login, String pass);
+    void addCustomer(Customer customer);
+    void updateCustomer(Customer customer);
     void deleteCustomer(int id);
 }

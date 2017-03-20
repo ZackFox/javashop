@@ -3,15 +3,15 @@ package com.javashop.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryEntity {
+public class Category {
     private Integer id;
     private String name;
     private int parentId;
-    private CategoryEntity parentCategory;
-    private List<CategoryEntity> subCategories;
+    private Category parentCategory;
+    private List<Category> subCategories;
 
 
-    public CategoryEntity(){
+    public Category(){
         subCategories = new ArrayList<>();
     }
 
@@ -23,11 +23,11 @@ public class CategoryEntity {
         this.id = id;
     }
 
-    public CategoryEntity getParentCategory() {
+    public Category getParentCategory() {
         return parentCategory;
     }
 
-    public void setParentCategory(CategoryEntity parentCategory) {
+    public void setParentCategory(Category parentCategory) {
         this.parentCategory = parentCategory;
     }
 
@@ -47,11 +47,11 @@ public class CategoryEntity {
         this.parentId = parentId;
     }
 
-    public List<CategoryEntity> getSubCategories() {
+    public List<Category> getSubCategories() {
         return subCategories;
     }
 
-    public static List<CategoryEntity> splitCategories(List<CategoryEntity> categories){
+    public static List<Category> splitCategories(List<Category> categories){
         for (int i = 0; i < categories.size(); i++) {
             for (int j = i; j < categories.size();j++) {
                 if(categories.get(j).getParentId() !=0 && categories.get(j).getParentId() == categories.get(i).getId() ) {

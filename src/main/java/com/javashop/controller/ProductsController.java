@@ -1,10 +1,8 @@
 package com.javashop.controller;
 
-import com.google.gson.Gson;
 import com.javashop.DAO.ProductDao;
 import com.javashop.DAO.ProductDaoImpl;
-import com.javashop.model.CategoryEntity;
-import com.javashop.model.ProductEntity;
+import com.javashop.model.Category;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,10 +31,10 @@ public class ProductsController extends HttpServlet {
             offset = Integer.valueOf(request.getParameter("offset"));
         }
 
-        CategoryEntity category = null;
-        List<CategoryEntity> list = (List<CategoryEntity>)request.getServletContext().getAttribute("categories");
+        Category category = null;
+        List<Category> list = (List<Category>)request.getServletContext().getAttribute("categories");
 
-        for (CategoryEntity c : list) {
+        for (Category c : list) {
             if (cat_id == c.getId()) category = c;
         }
 

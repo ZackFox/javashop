@@ -1,7 +1,7 @@
 package com.javashop.filters;
 
 
-import com.javashop.model.CustomerProfile;
+import com.javashop.model.Customer;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -21,7 +21,7 @@ public class AuthFilter implements Filter {
         HttpSession session = ((HttpServletRequest) request).getSession();
 
         if(session.getAttribute("login") == null ){
-            session.setAttribute("customer",new CustomerProfile());
+            session.setAttribute("customer",new Customer());
         }
 
         filterChain.doFilter(request,response);

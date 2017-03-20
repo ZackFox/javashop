@@ -27,11 +27,16 @@
                                     </div>
                                         <div class="p-content clearfix">
                                         <div class="image">
-                                            <img src="<c:url value="${pageContext.request.contextPath}/resources/img/pic8.jpg"/>" alt="картинка">
+                                            <img src="<c:url value="${pageContext.request.contextPath}/resources/img/pic10.jpg"/>" alt="картинка">
                                         </div>
                                         <div class="desctription">
                                             <p>${prod.description}</p>
                                         </div>
+                                    </div>
+
+                                    <div class="add">
+                                        <a href="/" > Добавить в избранное</a>
+                                        <a href="/" id="prod_${prod.id}" class="to-cart">Добавить в корзину</a>
                                     </div>
                                 </li>
                             </c:if>
@@ -55,8 +60,6 @@
                 </div>
             </div>
         </div>
-
-
 
 
 <jsp:include page="footer.jsp"/>

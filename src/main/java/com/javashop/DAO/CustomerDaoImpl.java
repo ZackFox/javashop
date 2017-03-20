@@ -2,7 +2,7 @@ package com.javashop.DAO;
 
 import com.javashop.db.ConnectionPoolUtil;
 import com.javashop.db.DbUtil;
-import com.javashop.model.CustomerProfile;
+import com.javashop.model.Customer;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,10 +13,10 @@ import java.util.List;
 
 public class CustomerDaoImpl implements CustomerDao {
 
-    public List<CustomerProfile> getAllCustomers() {
+    public List<Customer> getAllCustomers() {
         String sqlQuery = "select * from customers";
 
-        List<CustomerProfile> customers = new LinkedList<>();
+        List<Customer> customers = new LinkedList<>();
 
         Connection connection = DbUtil.getConnection();
 
@@ -26,7 +26,7 @@ public class CustomerDaoImpl implements CustomerDao {
                 ResultSet resultSet = ps.executeQuery();
 
                 while(resultSet.next()){
-                    CustomerProfile customer = new CustomerProfile();
+                    Customer customer = new Customer();
                     customer.setId(resultSet.getInt("id"));
                     customer.setFirstName(resultSet.getString("firstname"));
                     customer.setLastName(resultSet.getString("lastname"));
@@ -53,8 +53,8 @@ public class CustomerDaoImpl implements CustomerDao {
         return customers;
     }
 
-    public CustomerProfile getCustomerById(int id) {
-        CustomerProfile customer = null;
+    public Customer getCustomerById(int id) {
+        Customer customer = null;
         String sqlQuery = "select * from customers WHERE id=?";
         Connection connection = DbUtil.getConnection();
 
@@ -65,7 +65,7 @@ public class CustomerDaoImpl implements CustomerDao {
                 ResultSet resultSet = ps.executeQuery();
 
                 while(resultSet.next()){
-                    customer = new CustomerProfile();
+                    customer = new Customer();
                     customer.setId(resultSet.getInt("id"));
                     customer.setFirstName(resultSet.getString("firstname"));
                     customer.setLastName(resultSet.getString("lastname"));
@@ -91,8 +91,8 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public CustomerProfile getCustomerByLogin(String login, String pass) {
-        CustomerProfile customer = new CustomerProfile();
+    public Customer getCustomerByLogin(String login, String pass) {
+        Customer customer = new Customer();
         String sqlQuery = "select * from customers WHERE login=? and password=?";
         Connection connection = DbUtil.getConnection();
 
@@ -127,7 +127,7 @@ public class CustomerDaoImpl implements CustomerDao {
         return customer;
     }
 
-    public void addCustomer(CustomerProfile customer) {
+    public void addCustomer(Customer customer) {
         String sqlQuery = "insert into customers(firstname,lastname,address,phone,login,password,email) VALUES (?,?,?,?,?,?,?)";
         Connection connection = ConnectionPoolUtil.getConnection();
 
@@ -162,7 +162,7 @@ public class CustomerDaoImpl implements CustomerDao {
         }
     }
 
-    public void updateCustomer(CustomerProfile customer) {
+    public void updateCustomer(Customer customer) {
         String sqlQuery = "UPDATE customers set firstname=?,lastname=?,address=?,phone=?,login=?,password=?,email=? where id=?";
         Connection connection = ConnectionPoolUtil.getConnection();
 

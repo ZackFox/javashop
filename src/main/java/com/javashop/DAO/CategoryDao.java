@@ -1,11 +1,11 @@
 package com.javashop.DAO;
 
-import com.javashop.model.CategoryEntity;
+import com.javashop.model.Category;
 
 import java.util.List;
 
 public interface CategoryDao {
-    List<CategoryEntity> getAllCategories();
-    void addCategory(CategoryEntity category);
+    List<Category> getAllCategories();
+    void addCategory(Category category);
     void deleteCategory(int id);
 }

@@ -13,22 +13,24 @@
     <body>
         <div class="container">
             <div class="col-lg-offset-3 col-md-6">
-                <h2>регистрация!</h2>
-                <p>приложение написано с применением servlet и jdbc </p>
+                <p>Пожалуйста заполните все поля</p>
 
                 <form class="well" action="/registration/new/profile" method="post">
                     <lable>Имя</lable>
-                    <input type="text" name="firstname">
+                    <input type="text" name="firstname" required>
                     <lable>Фамилия</lable>
-                    <input type="text" name="lastname">
+                    <input type="text" name="lastname" required>
                     <lable>E-mail</lable>
-                    <input type="text" name="email">
+                    <input type="text" name="email" required>
                     <lable>Логин</lable>
-                    <input type="text" name="login">
+                    <input type="text" name="login" required>
                     <lable>Пороль</lable>
-                    <input type="password" name="password">
-                    <input type="submit">
+                    <input type="password" name="password" required>
+                    <input type="submit" value="Отправить">
                 </form>
+                <div clas="to-card">
+                    <a href="/catalog/">назад</a>
+                </div>
             </div>
         </div>
     </body>

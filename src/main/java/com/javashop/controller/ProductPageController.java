@@ -1,10 +1,8 @@
 package com.javashop.controller;
 
-import com.javashop.DAO.CategoryDao;
-import com.javashop.DAO.CategoryDaoimpl;
 import com.javashop.DAO.ProductDao;
 import com.javashop.DAO.ProductDaoImpl;
-import com.javashop.model.ProductEntity;
+import com.javashop.model.Product;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +19,7 @@ public class ProductPageController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.valueOf(request.getParameter("id"));
         ProductDao dao = new ProductDaoImpl();
-        ProductEntity product = dao.getProductById(id);
+        Product product = dao.getProductById(id);
 
         request.getServletContext().setAttribute("product",product);
         request.getRequestDispatcher("/WEB-INF/views/aboutProduct.jsp").forward(request,response);
