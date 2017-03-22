@@ -6,7 +6,7 @@ $(document).ready(function () {
         var i = 0;
         var item = {};
 
-        item.id = id.parse();
+        item.id = id;
         item.quantity = 1;
 
         $.ajax({
@@ -14,7 +14,7 @@ $(document).ready(function () {
             type:"POST",
             data:{item: JSON.stringify(item)},
             success:function (){
-                console.log();
+                console.log(id);
             }   
         });
     })

@@ -10,7 +10,7 @@
 
 
         <script src="<c:url value="/resources/js/jquery-3.1.1.min.js"/>"></script>
-        <script src="<c:url value="/resources/js/menu.js"/>"></script>
+        <script src="<c:url value="/resources/js/ajaxlogin.js"/>"></script>
     </head>
 
     <body>
@@ -45,7 +45,7 @@
                     <div class="col-md-2">
                         <a href="/catalog" class="logo">Shopper</a>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-6">
                         <div class="search-bar">
                             <div class="nav-menu">
                                 <span>Категории</span>
@@ -76,19 +76,19 @@
                             </form>
                         </div>
                     </div>
-                    <div class="col-md-3">
-
-                        <div class="message ${off}">
-                            <p>Для оформления заказа необходимо авторизоваться.</p>
-                        </div>
-
-                        <div class="cart ${on}">
-                            <i class="fa fa-shopping-cart"></i>
+                    <div class="col-md-4">
+                        <a href="/cabinet/card" class="cart clearfix">
+                            <span href="/cabinet/card" class="cart-total">Корзина пуста</span>
                             <span href="/cabinet/card" class="cart-count">0</span>
-                            <span href="/cabinet/card" class="cart-total">0</span>
-                            <a href="/cabinet/card" class="card">Посмотреть корзину</a>
-                        </div>
+                            <i class="fa fa-shopping-cart"></i>
+                        </a>
                     </div>
                 </div>
+            </div>
+
+            <div class="message">
+                <span></span>
+                <a href="">Забыл пароль?</a>
+                <i class="btn-close fa fa-close"></i>
             </div>
         </header>

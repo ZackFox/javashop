@@ -1,8 +1,22 @@
 $(document).ready(function () {
+    var i = 0;
+
+    $(".btn-close").on("click",function(event) {
+        $(this).parent().removeClass("activated");
+    });
+    
     $(".btn-login").on("click",function(event) {
         event.preventDefault();
         var login = $("#login").val();
         var pass = $("#pass").val();
+
+        var array = [
+            "Не угадал! Давай еще разок.",
+            "Опять мимо. Не сдавайся! я в тебя верю.",
+            "Однажды у тебя получится",
+            "Посмотри в web-камеру, я проверю тебя по базе Интерпола.Шучу",
+            "У тебя поля пустые, как ты входить собрался?"
+        ];
 
         if(login != "" && pass!= ""){
             $.ajax({
@@ -20,10 +34,18 @@ $(document).ready(function () {
                         $(".cart").addClass("activated");
                     }
                     else {
-                        $(".message p").text("логин или пароль неверны!");
+                        if(i>3)i = 0;
+                        $(".message span").text(array[i]);
+                        $(".message").addClass("activated");
+                        i+=1;
                     }
                 }
             });
+        }else {
+            $(".message").addClass("activated");
+            $(".message span").text(array[4]);
         }
     });
+
+    
 });
