@@ -39,7 +39,7 @@ public class ProductDaoImpl implements ProductDao{
                 product.setId(rs.getInt("id"));
                 product.setName(rs.getString("title"));
                 product.setDescription(rs.getString("description"));
-                product.setPrice(rs.getFloat("price"));
+                product.setPrice(rs.getInt("price"));
                 list.add(product);
             }
             ps.close();
@@ -109,7 +109,7 @@ public class ProductDaoImpl implements ProductDao{
                 product.setId(resultSet.getInt("id"));
                 product.setName(resultSet.getString("title"));
                 product.setDescription(resultSet.getString("description"));
-                product.setPrice(resultSet.getFloat("price"));
+                product.setPrice(resultSet.getInt("price"));
             }
 
             ps.close();

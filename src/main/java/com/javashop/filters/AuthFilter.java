@@ -8,8 +8,10 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-@WebFilter(urlPatterns = "/catalog/*")
+@WebFilter(urlPatterns = "/*")
 public class AuthFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -21,7 +23,12 @@ public class AuthFilter implements Filter {
         HttpSession session = ((HttpServletRequest) request).getSession();
 
         if(session.getAttribute("login") == null ){
-            session.setAttribute("customer",new Customer());
+            session.setAttribute("customer", new Customer());
+        }
+
+        if(session.getAttribute("cart") == null ){
+            List<Integer> cart = new ArrayList<>();
+            session.setAttribute("cart", cart);
         }
 
         filterChain.doFilter(request,response);

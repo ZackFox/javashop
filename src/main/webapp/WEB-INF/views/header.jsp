@@ -10,6 +10,7 @@
 
 
         <script src="<c:url value="/resources/js/jquery-3.1.1.min.js"/>"></script>
+        <script src="<c:url value="/resources/js/jquery.cookie.js"/>"></script>
         <script src="<c:url value="/resources/js/ajaxlogin.js"/>"></script>
     </head>
 
@@ -78,9 +79,9 @@
                     </div>
                     <div class="col-md-4">
                         <a href="/cabinet/card" class="cart clearfix">
-                            <span href="/cabinet/card" class="cart-total">Корзина пуста</span>
-                            <span href="/cabinet/card" class="cart-count">0</span>
+                            <span href="/cabinet/card" class="cart-count"></span>
                             <i class="fa fa-shopping-cart"></i>
+                            <span href="/cabinet/card" class="cart-total"></span>
                         </a>
                     </div>
                 </div>

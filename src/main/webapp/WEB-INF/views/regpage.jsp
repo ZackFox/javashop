@@ -14,22 +14,45 @@
         <div class="container">
             <div class="col-lg-offset-3 col-md-6">
                 <p>Пожалуйста заполните все поля</p>
+                <div class="well">
+                    <form action="/registration/new/profile" method="post">
+                        <div class="input-group">
+                            <span class="input-group-addon" >@</span>
+                            <input type="text" name="firstname" class="form-control" placeholder="Имя">
+                        </div>
 
-                <form class="well" action="/registration/new/profile" method="post">
-                    <lable>Имя</lable>
-                    <input type="text" name="firstname" required>
-                    <lable>Фамилия</lable>
-                    <input type="text" name="lastname" required>
-                    <lable>E-mail</lable>
-                    <input type="text" name="email" required>
-                    <lable>Логин</lable>
-                    <input type="text" name="login" required>
-                    <lable>Пороль</lable>
-                    <input type="password" name="password" required>
-                    <input type="submit" value="Отправить">
-                </form>
-                <div clas="to-card">
-                    <a href="/catalog/">назад</a>
+                        <div class="input-group">
+                            <span class="input-group-addon">@</span>
+                            <input type="text" name="lastname" class="form-control" placeholder="Фамилия">
+                        </div>
+
+                        <div class="input-group">
+                            <span class="input-group-addon">@</span>
+                            <input type="text" name="phone" class="form-control" placeholder="Телефон" id="phone">
+                        </div>
+
+                        <div class="input-group">
+                            <span class="input-group-addon">@</span>
+                            <input type="text" name="email" class="form-control" placeholder="E-mail" id="email">
+                        </div>
+
+                        <div class="input-group">
+                            <span class="input-group-addon" >@</span>
+                            <input type="text" name="login" class="form-control" placeholder="Логин">
+                        </div>
+
+                        <div class="input-group">
+                            <span class="input-group-addon" >@</span>
+                            <input type="text" name="password" class="form-control" placeholder="Пароль">
+                        </div>
+
+                        <div class="input-group">
+                            <a href="" >назад</a>
+                            <input type="submit" class="btn btn-success" value="Отправить">
+                        </div>
+
+                    </form>
+
                 </div>
             </div>
         </div>

@@ -3,7 +3,7 @@ package com.javashop.model;
 public class Product {
     private int id;
     private String name;
-    private float price ;
+    private int price ;
     private String description;
 
     public Product() {
@@ -41,7 +41,7 @@ public class Product {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

@@ -19,7 +19,7 @@ public class SuccessFilter implements Filter {
         HttpSession session = ((HttpServletRequest) request).getSession();
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         if(session.getAttribute("login") == null ){
-            httpResponse.sendRedirect("/catalog");
+            httpResponse.sendRedirect("/registration/new");
             return;
         }
         filterChain.doFilter(request,response);

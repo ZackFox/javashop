@@ -7,6 +7,8 @@ import com.javashop.model.Category;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 public class ContextListener implements ServletContextListener {
 

@@ -23,9 +23,7 @@ public class RegController extends HttpServlet {
         String login = request.getParameter("login");
         String pass = request.getParameter("password");
 
-        Customer newCustomer = new Customer();;
         CustomerDao dao = new CustomerDaoImpl();
-
         List<Customer> list = dao.getAllCustomers();
 
         for (Customer customer : list) {
@@ -34,12 +32,12 @@ public class RegController extends HttpServlet {
             }
         }
 
+        Customer newCustomer = new Customer();
         newCustomer.setFirstName(firstname);
         newCustomer.setLastName(lastname);
         newCustomer.setEmail(email);
         newCustomer.setLogin(login);
         newCustomer.setPassword(pass);
-
         dao.addCustomer(newCustomer);
 
         HttpSession session = request.getSession();

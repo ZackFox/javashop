@@ -63,5 +63,4 @@
 
 
 <jsp:include page="footer.jsp"/>
-<script src="<c:url value="/resources/js/addtoCart.js"/>"></script>
 <jsp:include page="../views/scripts.jsp"/>

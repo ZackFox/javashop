@@ -1,96 +1,74 @@
 
 $(document).ready(function () {
+    // $.cookie("uuid","10645f51-bb68-4ba4-b25c-d76c177db76f",{path:"/"});
+    updateMiniCart();
+
     $(".p_item").on("click",".to-cart",function(event) {
         event.preventDefault();
         var id = $(this).attr("id").slice(5);
-        var i = 0;
-        var item = {};
-
-        item.id = id;
-        item.quantity = 1;
-
         $.ajax({
-            url:"/cart/add",
             type:"POST",
-            data:{item: JSON.stringify(item)},
-            success:function (){
-                console.log(id);
-            }   
+            data:{add:id},
+            url:"/cart",
+            success: function () {updateMiniCart();}
         });
-    })
- });
+    });
+});
 
+function updateMiniCart(){
+    var uuid = $.cookie("uuid");
+    if(uuid){
+        $.ajax({
+            type:"GET",
+            data:{uuid: uuid},
+            url:"/cart",
+            success: function (js) {
+                var json = $.parseJSON(js);
+                console.log(json);
+                var count=0, total=0;
+                if(json.length>0){
+                    for(var i = 0; i < json.length;i++){
+                        console.log(json[i].productId);
+                        count+= json[i].quantity;
+                        total+= (json[i].productPrice* json[i].quantity);
+                    }
+                }
+                $(".cart-count").text((json.length>0)?count:"0");
+                $(".cart-total").text((json.length>0)?total+" Р.":"Корзина пуста");
+            }
+        });
+    }
+    else{
+        $(".cart-count").text("0");
+        $(".cart-total").text("Корзина пуста");
+    }
+}
 
-//     var cat_id = $(".products").data("category");
-//     var limit, offset;
-//
-//     getBrands(cat_id);
-//
-//     $(".brands").on("click",".brand",function(e){
-//         e.preventDefault();
-//         limit = 10;
-//         offset = 0;
-//         var brand_id = $(this).data("brand");
-//
-//         $(".products ul").text("");
-//         getProducts(brand_id);
-//         console.log(offset);
-//     });
-//
-//
-//     // var brandId = 0; var limit = 10, offset = 0;
-//     // getProducts();
-//     // $(".btn-more").click(function(e) {
-//     //     e.preventDefault();
-//     //     getProducts();
-//     // });
-//
-//
-//
-//     function getProducts (brand_id) {
+// function addItem(cart,id) {
+//     if(cart){
 //         $.ajax({
-//             type:"GET",
-//             url:"/get/products",
-//             data:{catId: cat_id, brandId: brand_id, offset: offset, limit: limit},
+//             type:"POST",
+//             data:{add:id},
+//             url:"/cart",
 //             success: function (json) {
-//                 var list = $.parseJSON(json);
-//                 var toAppend='';
-//
-//                 if(list.length != 0){
-//                     for (var i =0; i<list.length;i++) {
-//                         toAppend +=
-//                             '<li ><a href="/catalog/product?id='
-//                             + list[i].id
-//                             + '" class="p_item"><h3>'
-//                             + list[i].name
-//                             + '</h3><img src="/resources/img/pic8.jpg" alt=""> </a></li>';
-//                     }
-//                     $(".products ul").append(toAppend);
-//                     offset += limit;
-//                 }
+//                 var json = $.parseJSON(json);
+//                 $(".cart-count").text(json.quantity);
+//                 $(".cart-total").text(json.price);
 //             }
 //         });
 //     }
-//
-// });
-//
-// function getBrands (c) {
-//     $.ajax({
-//         type:"GET",
-//         url:"/get/brands",
-//         data:{catId: c},
-//         success: function (json) {
-//             var brands = $.parseJSON(json);
-//             var toAppend='<a href="/" class="brand" data-brand="0">Все</a>';
-//
-//             if(brands.length != 0){
-//                 for (var i = 0; i < brands.length; i++) {
-//                     toAppend += '<a href="/" class="brand" data-brand="'+brands[i].id+'">'+brands[i].Name+'</a>';
-//                 }
-//                 $(".brands").append(toAppend);
+//     else {
+//         $.ajax({
+//             type:"POST",
+//             data:{add:id},
+//             url:"/cart",
+//             success: function (json) {
+//                 var json = $.parseJSON(json);
+//                 $(".cart-count").text(json.quantity);
+//                 $(".cart-total").text(json.price);
 //             }
-//         }
-//     });
-// }
-//
-//
+//         });
+//     }
+    
+
+
