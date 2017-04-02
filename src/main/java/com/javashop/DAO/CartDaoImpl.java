@@ -32,7 +32,7 @@ public class CartDaoImpl implements CartDao {
             ps2 = con.prepareStatement(insert2);
             ps2.setObject(1,UUID.fromString(uuid));
             ps2.setInt(2,product_id);
-            ps2.execute();
+            ps2.executeUpdate();
 
             con.commit();
         }
@@ -94,6 +94,45 @@ public class CartDaoImpl implements CartDao {
     }
 
     @Override
+    public CartItem getCartItemById(String uuid, int product_id) {
+        String sql = "select product_id,products.title,products.price,quantity from cart_items JOIN products on product_id=products.id WHERE cart_uuid=? AND product_id=?";
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        CartItem item = new CartItem();
+
+        try{
+            con = ConnectionPoolUtil.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setObject(1,UUID.fromString(uuid));
+            ps.setObject(2,product_id);
+            rs = ps.executeQuery();
+
+            while(rs.next()){
+                item = new CartItem();
+                item.setProductId(rs.getInt("product_id"));
+                item.setTitle(rs.getString("title"));
+                item.setProductPrice(rs.getInt("price"));
+                item.setQuantity(rs.getInt("quantity"));
+            }
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                rs.close();
+                ps.close();
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return item;
+    }
+
+    @Override
     public void addToCart(String uuid, int product_id) {
         String sql = "insert into cart_items (cart_uuid,product_id) values (?,?)";
         Connection con = null;
@@ -104,7 +143,7 @@ public class CartDaoImpl implements CartDao {
             ps = con.prepareStatement(sql);
             ps.setObject(1,UUID.fromString(uuid));
             ps.setInt(2,product_id);
-            ps.execute();
+            ps.executeUpdate();
 
         }catch (SQLException e) {
             e.printStackTrace();
@@ -129,11 +168,12 @@ public class CartDaoImpl implements CartDao {
             ps = con.prepareStatement(sql);
             ps.setObject(1,UUID.fromString(uuid));
             ps.setInt(2,product_id);
-            ps.execute();
+            ps.executeUpdate();
 
         }catch (SQLException e) {
             e.printStackTrace();
-        }finally {
+        }
+        finally {
             try {
                 ps.close();
                 con.close();
@@ -149,7 +189,7 @@ public class CartDaoImpl implements CartDao {
     }
 
     @Override
-    public void deleteProduct(String uuid, int product_id) {
+    public void deleteItem(String uuid, int product_id) {
 
     }
 

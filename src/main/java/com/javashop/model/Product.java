@@ -37,7 +37,7 @@ public class Product {
         this.name = name;
     }
 
-    public float getPrice() {
+    public int getPrice() {
         return price;
     }
 

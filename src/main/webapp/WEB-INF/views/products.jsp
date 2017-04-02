@@ -36,7 +36,7 @@
 
                                     <div class="add">
                                         <a href="/" > Добавить в избранное</a>
-                                        <a href="/" id="prod_${prod.id}" class="to-cart">Добавить в корзину</a>
+                                        <a href="/" data-id="${prod.id}" data-price="${prod.price}" data-title="${prod.name}" class="to-cart">Добавить в корзину</a>
                                     </div>
                                 </li>
                             </c:if>

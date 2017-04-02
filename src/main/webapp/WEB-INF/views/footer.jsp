@@ -1,6 +1,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=utf-8" %>
 
+        <div class="mini-cart-wrapper">
+            <div class="mini-cart-block">
+                <a href="" class="cart-close fa fa-close"></a>
+                <div class="mini-cart-items"><table class="table"></table></div>
+                <a href="/order" class="btn btn-success order">Оформить заказ</a>
+            </div>
+        </div>
+
         <footer>
             <div>
                 <div>
@@ -27,4 +35,6 @@
                 </ul>
             </div>
         </footer>
+
+
 
