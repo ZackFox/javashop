@@ -37,37 +37,43 @@ public class CartController extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        int itemId = request.getParameter("id")!= null? Integer.valueOf(request.getParameter("id")): 0;
+        int itemId = !request.getParameter("id").equals("")?Integer.valueOf(request.getParameter("id")): 0;
+        String method = request.getParameter("method");
         String uuid = getCookie(request,"uuid");
 
-        if(itemId !=0 && !uuid.equals("")) {
-            CartItem item = cartDao.getCartItemById(uuid,itemId);
-            if(item.getProductId()== itemId){
-                cartDao.increaseQuantity(uuid,itemId);
+        if(method.equals("add")){
+            if(itemId !=0 && !uuid.equals("")) {
+                CartItem item = cartDao.getCartItemById(uuid,itemId);
+                if(item.getProductId()== itemId){
+                    cartDao.increaseQuantity(uuid,itemId);
+                }
+                else {
+                    cartDao.addToCart(uuid,itemId);
+                }
             }
-            else {
-                cartDao.addToCart(uuid,itemId);
+            else{
+                String newUuid = UUID.randomUUID().toString();
+                cartDao.addToNewCart(newUuid,itemId);
+                Cookie cookie = new Cookie("uuid",newUuid);
+                cookie.setMaxAge(10*3600*24);
+                response.addCookie(cookie);
             }
         }
-        else{
-            String newUuid = UUID.randomUUID().toString();
-            cartDao.addToNewCart(newUuid,itemId);
-            Cookie cookie = new Cookie("uuid",newUuid);
-            cookie.setMaxAge(10*3600*24);
-            response.addCookie(cookie);
+        else if(method.equals("increase")){
+            cartDao.increaseQuantity(uuid,itemId);
+        }
+        else if(method.equals("decrease")){
+            cartDao.decreaseQuantity(-1,uuid,itemId);
+        }
+        else if(method.equals("delete")){
+            cartDao.deleteItem(uuid,itemId);
         }
 
-    }
-
-    @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("delete item");
-    }
-
-    @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("update item's quantity");
+        List<CartItem> resultItems = cartDao.getCartItems(uuid);
+        String json = new Gson().toJson(resultItems);
+        response.setContentType("text/plain");
+        response.setCharacterEncoding("utf-8");
+        response.getWriter().write(json);
     }
 
     private String getCookie(HttpServletRequest request, String cookieName) {

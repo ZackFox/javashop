@@ -10,7 +10,7 @@ public interface CartDao {
     void addToNewCart(String uuid,int product_id);
     void addToCart(String uuid, int product_id);
     void increaseQuantity(String uuid, int product_id);
-    void decreaseQuantity(String uuid, int product_id);
+    void decreaseQuantity(int i,String uuid, int product_id);
     void deleteItem(String uuid, int product_id);
     void DeleteCart(String uuid);
 }
