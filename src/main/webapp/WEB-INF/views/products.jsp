@@ -20,12 +20,13 @@
                     <ul>
                         <c:forEach var="prod" items="${products}" varStatus="i">
                             <c:if test="${limit - i.index > 0 }">
-                                <li class="p_item">
+                                <li class="p_item clearfix">
                                     <div class="title-block clearfix">
                                         <a href="/catalog/product?id=${prod.id}">${prod.name}</a>
-                                        <p class="price">${prod.price}<span>Р.</span></p>
+                                        <p class="price">${prod.price}<span> Р.</span></p>
                                     </div>
-                                        <div class="p-content clearfix">
+
+                                    <div class="p-content clearfix">
                                         <div class="image">
                                             <img src="<c:url value="${pageContext.request.contextPath}/resources/img/pic10.jpg"/>" alt="картинка">
                                         </div>
@@ -33,9 +34,7 @@
                                             <p>${prod.description}</p>
                                         </div>
                                     </div>
-
-                                    <div class="add">
-                                        <a href="/" > Добавить в избранное</a>
+                                    <div class="p-option">
                                         <a href="/" data-id="${prod.id}" data-price="${prod.price}" data-title="${prod.name}" class="to-cart">Добавить в корзину</a>
                                     </div>
                                 </li>

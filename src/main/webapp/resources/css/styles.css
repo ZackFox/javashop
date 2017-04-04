@@ -229,6 +229,8 @@ li:hover .sub-menu{
 
 .cart-total{
     display: block;
+    width:99px;
+    text-align: center;
     float: right;
     margin-top:10px;
     font-size: 15px;
@@ -335,6 +337,15 @@ li:hover .sub-menu{
     margin-left:5%;
 }
 
+.p-option{
+
+}
+.to-cart{
+    float: right;
+    padding: 8px;
+    background: #4CAF50;
+    color: #fff;
+}
 
 
 
@@ -361,7 +372,7 @@ li:hover .sub-menu{
     float: left;
 }
 
-.mini-cart-wrapper{
+.mini-cart-popup {
     display: none;
     width: 100%;
     height: 100%;
@@ -386,6 +397,10 @@ li:hover .sub-menu{
     z-index:500;
 }
 
+.mini-cart-items{
+    height: 420px;
+    overflow-y: auto;
+}
 .mini-cart-item{ padding:15px 10px;}
 
 .item-title, .quantity,.item-price{

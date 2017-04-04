@@ -14,7 +14,7 @@ public class CartDaoImpl implements CartDao {
 
     @Override
     public List<CartItem> getCartItems(String uuid) {
-        String sql = "select product_id,products.title,products.price,quantity from cart_items JOIN products on product_id=products.id WHERE cart_uuid=?";
+        String sql = "select product_id,products.title,products.price,quantity from cart_items JOIN products on product_id=products.id WHERE cart_uuid=? ORDER BY cart_items.id";
         List<CartItem> list = new ArrayList<>();
 
         Connection connection = null;
