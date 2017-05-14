@@ -1,6 +1,8 @@
 package com.javashop.model;
 
 public class Product {
+    //REVU по моделям. id есть у многих классов. Можно вынести в общий класс.
+    //Нигде нету equals/hashcode - нет нигде сравнений?
     private int id;
     private String name;
     private int price ;

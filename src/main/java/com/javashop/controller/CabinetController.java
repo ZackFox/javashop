@@ -11,7 +11,7 @@ import java.io.IOException;
 @WebServlet("/cabinet")
 public class CabinetController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        //REVU Зачем этот метод? Кто удалять будет?
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

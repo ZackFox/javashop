@@ -15,7 +15,9 @@ public class ProductDaoImpl implements ProductDao{
 
     @Override
     public List<Product> getProductsByCategoryId(int catId, int brandId, int limit, int offset) {
-        String sql = "";
+        String sql = "";//REVU когда if/else - не надо инициализировать.
+        //REVU можно вынести в 2 константы.
+        //REVU почему бы не модставлять limit/offset через ? ?
         if (brandId != 0){
             sql = "select * from products WHERE category_id=? AND brand=? LIMIT "+limit+" OFFSET "+offset;
         }else{
@@ -23,16 +25,18 @@ public class ProductDaoImpl implements ProductDao{
         }
 
 
+
+
         List<Product> list = new ArrayList<>();
 
         Connection connection = ConnectionPoolUtil.getConnection();
         try {
 
-            PreparedStatement ps = connection.prepareStatement(sql);
+            PreparedStatement ps = connection.prepareStatement(sql);//REVU кто завкроет в случае ошибки?
             ps.setInt(1, catId);
 
             if (brandId != 0) ps.setInt(2, brandId);
-            ResultSet rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();//REVU кто завкроет в случае ошибки?
 
             while (rs.next()){
                 Product product = new Product();
@@ -66,7 +70,8 @@ public class ProductDaoImpl implements ProductDao{
 
         try {
             con = ConnectionPoolUtil.getConnection();
-            PreparedStatement ps = con.prepareStatement(sql);
+            //REVU con == null?
+            PreparedStatement ps = con.prepareStatement(sql);//REVU кто закроет?
             ps.setInt(1,id);
 
             ResultSet rs = ps.executeQuery();
@@ -83,7 +88,7 @@ public class ProductDaoImpl implements ProductDao{
         }
         finally {
             try {
-                con.close();
+                con.close();//REVU NPE?
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -101,9 +106,9 @@ public class ProductDaoImpl implements ProductDao{
         Connection connection = ConnectionPoolUtil.getConnection();
 
         try {
-            PreparedStatement ps = connection.prepareStatement(sql);
+            PreparedStatement ps = connection.prepareStatement(sql);//REVU кто завкроет в случае ошибки?
             ps.setInt(1,id);
-            ResultSet resultSet = ps.executeQuery();
+            ResultSet resultSet = ps.executeQuery();//REVU кто завкроет в случае ошибки?
 
             while (resultSet.next()){
                 product.setId(resultSet.getInt("id"));
@@ -126,6 +131,7 @@ public class ProductDaoImpl implements ProductDao{
         return product;
     }
 
+    //REVU что это такое?
 //    @Override
 //    public void addCategory(Category category) {
 //

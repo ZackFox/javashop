@@ -16,8 +16,10 @@ import java.util.List;
 
 @WebServlet("/get/products")
 public class ProductsJsonController extends HttpServlet {
-
+//REVU может удалить этот класс?
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //REVU некоторые переменные не используются
+        //REVU лучше parseInt
         int catId = Integer.valueOf(request.getParameter("catId"));
         int brandId = Integer.valueOf(request.getParameter("brandId"));
         int offset = Integer.valueOf(request.getParameter("offset"));

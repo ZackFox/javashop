@@ -14,12 +14,13 @@ import java.util.List;
 
 @WebServlet("/catalog/category")
 public class ProductsController extends HttpServlet {
-    ProductDao dao = new ProductDaoImpl();
+    ProductDao dao = new ProductDaoImpl(); //REVU Тот же вопрос. Плюс, почему не private
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int cat_id = 1, brand_id = 0, offset = 0, limit = 4;
 
         if(request.getParameter("id") != null){
+            //REVU лучше parseInt
             cat_id = Integer.valueOf(request.getParameter("id"));
         }
 
@@ -32,12 +33,13 @@ public class ProductsController extends HttpServlet {
         }
 
         Category category = null;
+        //REVU это как это так? И нормально приводится тип?
         List<Category> list = (List<Category>)request.getServletContext().getAttribute("categories");
 
         for (Category c : list) {
             if (cat_id == c.getId()) category = c;
         }
-
+        //REVU NPE возможен?
         if(category.getParentId() == 0){
             request.setAttribute("subCategories", category.getSubCategories());
             request.getRequestDispatcher("/WEB-INF/views/subcategories.jsp").forward(request,response);
@@ -56,6 +58,7 @@ public class ProductsController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //REVU Зачем этот метод? Кто удалять будет?
 
 
 

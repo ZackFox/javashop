@@ -17,8 +17,9 @@ import java.io.IOException;
 public class ProductPageController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //REVU лучше parseInt
         int id = Integer.valueOf(request.getParameter("id"));
-        ProductDao dao = new ProductDaoImpl();
+        ProductDao dao = new ProductDaoImpl();//REVU ?
         Product product = dao.getProductById(id);
 
         request.getServletContext().setAttribute("product",product);

@@ -10,7 +10,7 @@ public class Cart {
     private Date update;
 
     public Cart() {
-
+//REVU лишнее
     }
 
 
@@ -23,7 +23,7 @@ public class Cart {
     }
 
     public Date getCreation() {
-        return creation;
+        return creation; //REVU дата - объект, который можно изменить снаружи.
     }
 
     public void setCreation(Date creation) {

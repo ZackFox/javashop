@@ -51,6 +51,7 @@ public class Category {
         return subCategories;
     }
 
+    //REVU что делает этот метод в классе модели?
     public static List<Category> splitCategories(List<Category> categories){
         for (int i = 0; i < categories.size(); i++) {
             for (int j = i; j < categories.size();j++) {
