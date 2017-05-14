@@ -1,6 +1,6 @@
 package com.javashop.controller;
 
-import com.google.gson.Gson;
+import com.google.gson.Gson;//REVU не используется
 import com.javashop.DAO.CustomerDao;
 import com.javashop.DAO.CustomerDaoImpl;
 import com.javashop.model.Customer;
@@ -22,17 +22,18 @@ public class LoginController extends HttpServlet {
         String pass = request.getParameter("password");
 
         String url = request.getHeader("Referer");
-        String path = url.substring(url.indexOf('/',10));
+        String path = url.substring(url.indexOf('/',10)); //REVU зачем эта переменная? Магическое число?
 
-        CustomerDao dao = new CustomerDaoImpl();
+        CustomerDao dao = new CustomerDaoImpl(); //REVU дао на каждый запрос создаешь? Чудненько.
         Customer customer = dao.getCustomerByLogin(login,pass);
+        //REVU login и pass могут быть null. Проверка в ДАО есть?
         if (!customer.getLogin().equals(login) && !customer.getPassword().equals(pass)){
-            response.getWriter().write("");
+            response.getWriter().write("");//REVU Вот так просто? Почему бы 400 ошибку не отдать?
         }
         else{
             HttpSession session = request.getSession();
             session.setAttribute("login",customer.getId());
-            session.setAttribute("customer",customer);
+            session.setAttribute("customer",customer); //REVU не айс. Customer не Serializable
             response.getWriter().write("200");
         }
     }

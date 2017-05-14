@@ -5,6 +5,7 @@ import com.javashop.model.CartItem;
 import java.util.List;
 
 public interface CartDao {
+    //REVU без переносов страшно выглядит
     List<CartItem> getCartItems(String uuid);
     CartItem getCartItemById(String uuid,int product_id);
     void addToNewCart(String uuid,int product_id);

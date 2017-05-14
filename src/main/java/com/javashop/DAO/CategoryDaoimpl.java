@@ -21,8 +21,8 @@ public class CategoryDaoimpl implements CategoryDao {
 
         try {
             connection = ConnectionPoolUtil.getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
+            PreparedStatement ps = connection.prepareStatement(sql);//REVU NPE?
+            ResultSet rs = ps.executeQuery();//REVU кто закроет?
 
             while (rs.next()){
                 Category category = new Category();
@@ -38,7 +38,7 @@ public class CategoryDaoimpl implements CategoryDao {
         }
         finally {
             try {
-                connection.close();
+                connection.close();//REVU NPE?
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -48,7 +48,7 @@ public class CategoryDaoimpl implements CategoryDao {
     }
 
     public void addCategory(Category category) {
-
+        //REVU не используешь? Так удали
     }
 
     @Override

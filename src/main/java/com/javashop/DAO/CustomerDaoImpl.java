@@ -22,8 +22,8 @@ public class CustomerDaoImpl implements CustomerDao {
 
         if(connection!=null){
             try {
-                PreparedStatement ps = connection.prepareStatement(sqlQuery);
-                ResultSet resultSet = ps.executeQuery();
+                PreparedStatement ps = connection.prepareStatement(sqlQuery);//REVU кто закроет в случае ошибки?
+                ResultSet resultSet = ps.executeQuery();//REVU кто закроет в случае ошибки?
 
                 while(resultSet.next()){
                     Customer customer = new Customer();
@@ -60,9 +60,9 @@ public class CustomerDaoImpl implements CustomerDao {
 
         if(connection!=null){
             try {
-                PreparedStatement ps = connection.prepareStatement(sqlQuery);
+                PreparedStatement ps = connection.prepareStatement(sqlQuery);//REVU а если ошибка? Кто закроет?
                 ps.setInt(1,id);
-                ResultSet resultSet = ps.executeQuery();
+                ResultSet resultSet = ps.executeQuery();//тоже самое
 
                 while(resultSet.next()){
                     customer = new Customer();
@@ -98,10 +98,10 @@ public class CustomerDaoImpl implements CustomerDao {
 
         if(connection!=null){
             try {
-                PreparedStatement ps = connection.prepareStatement(sqlQuery);
+                PreparedStatement ps = connection.prepareStatement(sqlQuery);//REVU кто закроет в случае ошибки?
                 ps.setString(1,login);
                 ps.setString(2,pass);
-                ResultSet resultSet = ps.executeQuery();
+                ResultSet resultSet = ps.executeQuery(); //REVU кто закроет в случае ошибки?
 
                 while(resultSet.next()){
                     customer.setId(resultSet.getInt("id"));
@@ -131,9 +131,9 @@ public class CustomerDaoImpl implements CustomerDao {
         String sqlQuery = "insert into customers(firstname,lastname,address,phone,login,password,email) VALUES (?,?,?,?,?,?,?)";
         Connection connection = ConnectionPoolUtil.getConnection();
 
-        if(connection !=null){
+        if(connection !=null){ //REVU 0_o Нифига себе
             try {
-                PreparedStatement ps = connection.prepareStatement(sqlQuery);
+                PreparedStatement ps = connection.prepareStatement(sqlQuery);//REVU и опять
 
                 ps.setString(1,customer.getFirstName());
                 ps.setString(2,customer.getLastName());
@@ -166,9 +166,9 @@ public class CustomerDaoImpl implements CustomerDao {
         String sqlQuery = "UPDATE customers set firstname=?,lastname=?,address=?,phone=?,login=?,password=?,email=? where id=?";
         Connection connection = ConnectionPoolUtil.getConnection();
 
-        if(connection !=null){
+        if(connection !=null){ //REVU глазам не верю
             try {
-                PreparedStatement ps = connection.prepareStatement(sqlQuery);
+                PreparedStatement ps = connection.prepareStatement(sqlQuery);//REVU и опять
 
                 ps.setString(1,customer.getFirstName());
                 ps.setString(2,customer.getLastName());
@@ -204,7 +204,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
         if(connection !=null){
             try {
-                PreparedStatement ps = connection.prepareStatement(sqlQuery);
+                PreparedStatement ps = connection.prepareStatement(sqlQuery);//REVU Кто закроет в случае ошибки?
                 ps.setInt(1,id);
 
                 int ex = ps.executeUpdate();

@@ -27,7 +27,7 @@ public class AuthFilter implements Filter {
         }
 
         if(session.getAttribute("cart") == null ){
-            List<Integer> cart = new ArrayList<>();
+            List<Integer> cart = new ArrayList<>();//REVU Collections.emptyList.
             session.setAttribute("cart", cart);
         }
 

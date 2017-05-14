@@ -20,15 +20,16 @@ public class CartDaoImpl implements CartDao {
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-
+        //REVU почему не try with resources?
         try{
             connection = ConnectionPoolUtil.getConnection();
-            statement = connection.prepareStatement(sql);
+            statement = connection.prepareStatement(sql);//REVU NPE возможен
             statement.setObject(1,UUID.fromString(uuid));
             resultSet = statement.executeQuery();
 
             while(resultSet.next()){
                 CartItem item = new CartItem();
+                //REVU дублируемый код
                 item.setProductId(resultSet.getInt("product_id"));
                 item.setTitle(resultSet.getString("title"));
                 item.setProductPrice(resultSet.getInt("price"));
@@ -37,12 +38,13 @@ public class CartDaoImpl implements CartDao {
             }
 
         }catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace();//REVU 1. Логирование 2. Ошибка произошла и дальше что?
+            //REVU тогда здесь можно return Collections.emptyList();
         }finally {
             try {
-                resultSet.close();
-                statement.close();
-                connection.close();
+                resultSet.close();//REVU NPE?
+                statement.close();//REVU NPE?
+                connection.close();//REVU NPE?
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -54,12 +56,12 @@ public class CartDaoImpl implements CartDao {
     @Override
     public CartItem getCartItemById(String uuid, int product_id) {
         String sql = "select product_id,products.title,products.price,quantity from cart_items JOIN products on product_id=products.id WHERE cart_uuid=? AND product_id=?";
-
+        //REVU все тоже самое
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
 
-        CartItem item = new CartItem();
+        CartItem item = new CartItem(); //REVU если нету item, то получается пустой?
 
         try{
             connection = ConnectionPoolUtil.getConnection();
@@ -70,6 +72,7 @@ public class CartDaoImpl implements CartDao {
 
             while(resultSet.next()){
                 item = new CartItem();
+                //REVU дублируемый код
                 item.setProductId(resultSet.getInt("product_id"));
                 item.setTitle(resultSet.getString("title"));
                 item.setProductPrice(resultSet.getInt("price"));
@@ -80,9 +83,9 @@ public class CartDaoImpl implements CartDao {
             e.printStackTrace();
         }finally {
             try {
-                resultSet.close();
-                statement.close();
-                connection.close();
+                resultSet.close();//REVU NPE?
+                statement.close();//REVU NPE?
+                connection.close();//REVU NPE?
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -93,6 +96,7 @@ public class CartDaoImpl implements CartDao {
 
     @Override
     public void addToNewCart(String uuid,int product_id) {
+        //REVU Разное форматирование запросов в разных методах.
         String query1 = "INSERT INTO carts (id) VALUES (?)";
         String query2= "INSERT INTO cart_items (cart_uuid,product_id) VALUES (?,?)";
 
@@ -102,7 +106,7 @@ public class CartDaoImpl implements CartDao {
 
         try{
             connection = ConnectionPoolUtil.getConnection();
-            connection.setAutoCommit(false);
+            connection.setAutoCommit(false);//REVU NPE
 
             statement1 = connection.prepareStatement(query1);
             statement1.setObject(1,UUID.fromString(uuid));
@@ -125,9 +129,9 @@ public class CartDaoImpl implements CartDao {
 
         }finally {
             try {
-                statement1.close();
-                statement2.close();
-                connection.close();
+                statement1.close();//REVU NPE?
+                statement2.close();//REVU NPE?
+                connection.close();//REVU NPE?
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -136,6 +140,7 @@ public class CartDaoImpl implements CartDao {
 
     @Override
     public void addToCart(String uuid, int product_id) {
+        //REVU разное форматирование
         String query1 = "insert into cart_items (cart_uuid,product_id) values (?,?)";
         String query2 = "UPDATE carts SET date_update = DEFAULT WHERE id = ?";
 
@@ -145,7 +150,7 @@ public class CartDaoImpl implements CartDao {
 
         try{
             connection = ConnectionPoolUtil.getConnection();
-            connection.setAutoCommit(false);
+            connection.setAutoCommit(false); //REVU NPE
 
             statement1 = connection.prepareStatement(query1);
             statement1.setObject(1,UUID.fromString(uuid));
@@ -168,9 +173,9 @@ public class CartDaoImpl implements CartDao {
             }
         }finally {
             try {
-                statement1.close();
-                statement2.close();
-                connection.close();
+                statement1.close(); //REVU опять NPE возможен
+                statement2.close(); //NPE
+                connection.close(); //NPE
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -188,7 +193,7 @@ public class CartDaoImpl implements CartDao {
 
         try{
             connection = ConnectionPoolUtil.getConnection();
-            connection.setAutoCommit(false);
+            connection.setAutoCommit(false); //REVU и опять NPE
 
             statement1 = connection.prepareStatement(query1);
             statement1.setObject(1,UUID.fromString(uuid));
@@ -212,9 +217,9 @@ public class CartDaoImpl implements CartDao {
         }
         finally {
             try {
-                statement1.close();
-                statement2.close();
-                connection.close();
+                statement1.close(); //REVU и опять NPE
+                statement2.close(); //NPE
+                connection.close(); //NPE
             }
             catch (SQLException e) {
                 e.printStackTrace();
@@ -223,6 +228,7 @@ public class CartDaoImpl implements CartDao {
     }
 
     @Override
+    //REVU int i - очень информативно
     public void decreaseQuantity(int i, String uuid, int product_id) {
         String query1 = "UPDATE cart_items SET quantity = cart_items.quantity+? WHERE cart_uuid=? and product_id=?";
         String query2 = "UPDATE carts SET date_update = DEFAULT WHERE id = ?";
@@ -233,7 +239,7 @@ public class CartDaoImpl implements CartDao {
 
         try{
             connection = ConnectionPoolUtil.getConnection();
-            connection.setAutoCommit(false);
+            connection.setAutoCommit(false); //REVU NPE?
 
             statement1 = connection.prepareStatement(query1);
             statement1.setObject(1,i);
@@ -258,9 +264,9 @@ public class CartDaoImpl implements CartDao {
         }
         finally {
             try {
-                statement1.close();
-                statement2.close();
-                connection.close();
+                statement1.close(); //REVU NPE?
+                statement2.close(); //REVU NPE?
+                connection.close(); //REVU NPE?
             }
             catch (SQLException e) {
                 e.printStackTrace();
@@ -303,7 +309,7 @@ public class CartDaoImpl implements CartDao {
         }
         finally {
             try {
-                statement1.close();
+                statement1.close();//REVU ну ты понял?
                 statement2.close();
                 connection.close();
             }
@@ -314,6 +320,7 @@ public class CartDaoImpl implements CartDao {
     }
 
     @Override
+    //REVU метод с большой буквы
     public void DeleteCart(String uuid) {
         String query = "DELETE from carts WHERE id=?";
 
@@ -322,7 +329,7 @@ public class CartDaoImpl implements CartDao {
 
         try{
             connection = ConnectionPoolUtil.getConnection();
-            statement = connection.prepareStatement(query);
+            statement = connection.prepareStatement(query);//REVU NPE?
             statement.setObject(1,UUID.fromString(uuid));
             statement.executeUpdate();
 
@@ -331,8 +338,8 @@ public class CartDaoImpl implements CartDao {
         }
         finally {
             try {
-                statement.close();
-                connection.close();
+                statement.close();//REVU NPE?
+                connection.close();//REVU NPE?
             }
             catch (SQLException e) {
                 e.printStackTrace();
