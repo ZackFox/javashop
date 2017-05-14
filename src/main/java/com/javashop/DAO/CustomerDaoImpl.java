@@ -22,8 +22,8 @@ public class CustomerDaoImpl implements CustomerDao {
 
         if(connection!=null){
             try {
-                PreparedStatement ps = connection.prepareStatement(sqlQuery);//REVU кто завкроет в случае ошибки?
-                ResultSet resultSet = ps.executeQuery();//REVU кто завкроет в случае ошибки?
+                PreparedStatement ps = connection.prepareStatement(sqlQuery);//REVU кто закроет в случае ошибки?
+                ResultSet resultSet = ps.executeQuery();//REVU кто закроет в случае ошибки?
 
                 while(resultSet.next()){
                     Customer customer = new Customer();
@@ -98,10 +98,10 @@ public class CustomerDaoImpl implements CustomerDao {
 
         if(connection!=null){
             try {
-                PreparedStatement ps = connection.prepareStatement(sqlQuery);//REVU кто завкроет в случае ошибки?
+                PreparedStatement ps = connection.prepareStatement(sqlQuery);//REVU кто закроет в случае ошибки?
                 ps.setString(1,login);
                 ps.setString(2,pass);
-                ResultSet resultSet = ps.executeQuery(); //REVU кто завкроет в случае ошибки?
+                ResultSet resultSet = ps.executeQuery(); //REVU кто закроет в случае ошибки?
 
                 while(resultSet.next()){
                     customer.setId(resultSet.getInt("id"));

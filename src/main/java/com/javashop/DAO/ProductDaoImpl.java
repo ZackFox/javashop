@@ -32,11 +32,11 @@ public class ProductDaoImpl implements ProductDao{
         Connection connection = ConnectionPoolUtil.getConnection();
         try {
 
-            PreparedStatement ps = connection.prepareStatement(sql);//REVU кто завкроет в случае ошибки?
+            PreparedStatement ps = connection.prepareStatement(sql);//REVU кто закроет в случае ошибки?
             ps.setInt(1, catId);
 
             if (brandId != 0) ps.setInt(2, brandId);
-            ResultSet rs = ps.executeQuery();//REVU кто завкроет в случае ошибки?
+            ResultSet rs = ps.executeQuery();//REVU кто закроет в случае ошибки?
 
             while (rs.next()){
                 Product product = new Product();
@@ -106,9 +106,9 @@ public class ProductDaoImpl implements ProductDao{
         Connection connection = ConnectionPoolUtil.getConnection();
 
         try {
-            PreparedStatement ps = connection.prepareStatement(sql);//REVU кто завкроет в случае ошибки?
+            PreparedStatement ps = connection.prepareStatement(sql);//REVU кто закроет в случае ошибки?
             ps.setInt(1,id);
-            ResultSet resultSet = ps.executeQuery();//REVU кто завкроет в случае ошибки?
+            ResultSet resultSet = ps.executeQuery();//REVU кто закроет в случае ошибки?
 
             while (resultSet.next()){
                 product.setId(resultSet.getInt("id"));
